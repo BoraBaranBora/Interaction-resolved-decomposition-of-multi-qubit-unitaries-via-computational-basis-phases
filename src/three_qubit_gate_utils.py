@@ -220,6 +220,8 @@ def slice_3q_from_proj(vec_proj, qubit_names, idx_e, idx_c1, idx_c2, idx_N):
 # ============================================================
 
 
+
+
 def plot_drives(drives, time_grids, outdir: Path, title="MW Pulse",
                 gamma_e_rad_per_us_per_T=γ_e):
     """
@@ -244,11 +246,14 @@ def plot_drives(drives, time_grids, outdir: Path, title="MW Pulse",
         t_ch = np.concatenate([t for c, t in pieces_t if c == ch])
         y_ch_uT = np.concatenate([y for c, y in pieces_y if c == ch])
         B_T = y_ch_uT * 1e-6
-        Omega_rad_per_us = gamma_e_rad_per_us_per_T * B_T
+
+        # FIX: correct simulation prefactor γ_e E(t)/(2√2)
+        Omega_rad_per_us = gamma_e_rad_per_us_per_T * B_T / (2 * np.sqrt(2))
+
         plt.plot(t_ch * 1e9, Omega_rad_per_us, label=f"Drive {ch+1}")
 
     plt.xlabel("Time [ns]")
-    plt.ylabel("Rabi frequency [Mrad/s]")
+    plt.ylabel(r"$\gamma_e E(t)/(2\sqrt{2})$ [Mrad/s]")
     plt.title(title)
     plt.grid(True)
     plt.tight_layout()
