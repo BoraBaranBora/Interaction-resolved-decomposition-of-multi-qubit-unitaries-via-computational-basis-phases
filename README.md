@@ -24,14 +24,9 @@ These resources allow the plots and numerical results from the paper to be repro
 
 ### Pulse amplitude convention
 
-The pulse files store the microwave envelope \(E(t)\) (in Tesla).
+The pulse files store the time-modulated Rabi-frequency \(\Omega(t)\) in the form \(\frac{\sqrt{2} \Omega(t)}{\gamma_e}\) (in Mrad/s).
 
-In the simulation, the electron-drive prefactor is
-\[
-\Omega_{\mathrm{sim}}(t)=\frac{\gamma_e E(t)}{2\sqrt{2}}.
-\]
-
-Pulse amplitudes therefore correspond directly to \(E(t)\) and should not be pre-scaled when used with the provided simulation code.
+Pulse amplitudes therefore should not be pre-scaled when used with the provided simulation code.
 
 To regenerate the figures:
 

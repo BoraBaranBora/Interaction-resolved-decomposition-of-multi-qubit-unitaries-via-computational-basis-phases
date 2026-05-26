@@ -211,7 +211,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "--gate",
     choices=["diagonal", "nondiagonal"],
-    default="diagonal",
+    default="nondiagonal",
     help="Which gate to analyze: 'diagonal' ≡ ZZZ, 'nondiagonal' ≡ XZZ.",
 )
 args = parser.parse_args()

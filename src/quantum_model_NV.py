@@ -325,7 +325,7 @@ def get_U_RWA_multi(
               (Hy @ kronN(torch.eye(2, dtype=_dt, device=dev), Sdiag))
     H_e_RWA = ((γ_e / math.sqrt(2)) * 0.5 * factor * Ω_e0) * H_e_RWA
 
-    # (2) MW-driven e–C modulation H_eN^(RWA)  ~  -√2 γ_e Ω_e0 * [ (qx sinΔe t + qy cosΔe t)/2 ⊗ Σ_k Θ_k (Xk cos(δk t − φC) + Yk sin(...)) ]
+    # (2) MW-driven e–C modulation H_eN^(RWA)  ~  -√2 γ_e Ω_e0 1/4 * [ (qx sinΔe t + qy cosΔe t)/2 ⊗ Σ_k Θ_k (Xk cos(δk t − φC) + Yk sin(...)) ]
     if include_eC_mod:
         mod1 = 0.5 * ( qx.to(dtype=_dt, device=dev) * torch.sin(Δ_e * t) +
                        qy.to(dtype=_dt, device=dev) * torch.cos(Δ_e * t) )

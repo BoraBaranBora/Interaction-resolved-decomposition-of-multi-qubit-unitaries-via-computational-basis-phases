@@ -248,12 +248,13 @@ def plot_drives(drives, time_grids, outdir: Path, title="MW Pulse",
         B_T = y_ch_uT * 1e-6
 
         # FIX: correct simulation prefactor γ_e E(t)/(2√2)
-        Omega_rad_per_us = gamma_e_rad_per_us_per_T * B_T / (2 * np.sqrt(2))
+        Omega_rad_per_us = gamma_e_rad_per_us_per_T * B_T / (np.sqrt(2))
 
-        plt.plot(t_ch * 1e9, Omega_rad_per_us, label=f"Drive {ch+1}")
+        plt.plot(t_ch * 1e9, Omega_rad_per_us/ (np.pi*2), label=f"Drive {ch+1}")
 
     plt.xlabel("Time [ns]")
-    plt.ylabel(r"$\gamma_e E(t)/(2\sqrt{2})$ [Mrad/s]")
+    #plt.ylabel(r"$\gamma_e E(t)/(2\sqrt{2})$ [Mrad/s]")
+    plt.ylabel(r"$\Omega(t)$ [2$\pi$ $\times$ MHz]")
     plt.title(title)
     plt.grid(True)
     plt.tight_layout()
