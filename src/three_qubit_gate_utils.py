@@ -492,15 +492,15 @@ def plot_invariants(
 ):
     plt.figure(figsize=(12, 6))
 
-    plt.plot(time_axis_ns, phases["alpha"],    label=r"$\Delta_{\{a\}}$")
-    plt.plot(time_axis_ns, phases["beta"],     label=r"$\Delta_{\{b\}}$")
-    plt.plot(time_axis_ns, phases["chi"],      label=r"$\Delta_{\{c\}}$")
-    plt.plot(time_axis_ns, phases["gamma_ab"], label=r"$\Delta_{\{a,b\}}$")
-    plt.plot(time_axis_ns, phases["gamma_ac"], label=r"$\Delta_{\{a,c\}}$")
-    plt.plot(time_axis_ns, phases["gamma_bc"], label=r"$\Delta_{\{b,c\}}$")
+    plt.plot(time_axis_ns, phases["alpha"],    label=r"$\phi({\{a\}})$")
+    plt.plot(time_axis_ns, phases["beta"],     label=r"$\phi({\{b\}})$")
+    plt.plot(time_axis_ns, phases["chi"],      label=r"$\phi({\{c\}})$")
+    plt.plot(time_axis_ns, phases["gamma_ab"], label=r"$\phi({\{a,b\}})$")
+    plt.plot(time_axis_ns, phases["gamma_ac"], label=r"$\phi({\{a,c\}})$")
+    plt.plot(time_axis_ns, phases["gamma_bc"], label=r"$\phi({\{b,c\}})$")
     plt.plot(time_axis_ns, phases["lambda"],
              linewidth=2.6, color="black",
-             label=r"$\Delta_{\{a,b,c\}}$")
+             label=r"$\phi({\{a,b,c\}})$")
 
     if target_line is not None:
         plt.axhline(
@@ -513,7 +513,7 @@ def plot_invariants(
     plt.ylabel("Phase invariant value (rad)")
     plt.title(title)
     plt.grid(True)
-    plt.legend(ncol=2, frameon=True, loc='upper left')
+    plt.legend(ncol=2, frameon=True, loc='lower left')
 
     plt.tight_layout()
     outdir.mkdir(parents=True, exist_ok=True)
