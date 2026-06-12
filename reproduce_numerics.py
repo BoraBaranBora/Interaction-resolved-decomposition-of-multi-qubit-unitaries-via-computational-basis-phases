@@ -179,7 +179,7 @@ def run_demo(gate_key: str):
         t_inv, phases,
         outdir=fig_dir,
         filename=cfg["invariants_filename"],
-        title=f"{gate_label}: phase invariants for (e, C1, C2)",
+        title=f"{gate_label}: Time Evolution of Phase Invariants for (e, C1, C2)",
         target_line=cfg["target_line"],
         target_label=cfg["target_label"],
     )
