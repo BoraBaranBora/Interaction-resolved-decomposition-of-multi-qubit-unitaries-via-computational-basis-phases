@@ -300,7 +300,8 @@ def get_U_RWA_multi(
     ω_RF=None,             # single RF carrier (rad/s)
     detuning_cutoff=1e3,   # keep 14N Fourier terms with |Ω-ω_RF| < cutoff
     pc=None,               # precomp dict from build_multiC_precomp()
-    include_eC_mod=True    # include MW-driven e–C modulation pathway
+    include_eC_mod=True,    # include MW-driven e–C modulation pathway
+    H_noise=None,         # optional full-Hilbert stochastic Hamiltonian (rad/s)
 ):
     assert pc is not None, "Pass 'pc' from build_multiC_precomp() or use module-level get_U_RWA."
     _dt = dtype; dev = device
@@ -376,6 +377,15 @@ def get_U_RWA_multi(
           + P_e0 @ kronN(torch.eye(2, dtype=_dt, device=dev), H_aux_RWA)  @ P_e0 \
           + P_e1 @ kronN(torch.eye(2, dtype=_dt, device=dev), H_comp_RWA) @ P_e1
 
+    if H_noise is not None:
+        H_noise = torch.as_tensor(H_noise, dtype=_dt, device=dev)
+        if H_noise.shape != H_eff.shape:
+            raise ValueError(
+                f"H_noise has shape {tuple(H_noise.shape)}, "
+                f"expected {tuple(H_eff.shape)}"
+            )
+        H_eff = H_eff + H_noise
+
     U = torch.linalg.matrix_exp(-1j * H_eff * dt)
     return U
 
@@ -386,11 +396,23 @@ def get_U_RWA_multi(
 _ACTIVE_C_INDICES = list(range(1, int(len(γ_n))))
 _PC = build_multiC_precomp(c_indices=_ACTIVE_C_INDICES, use_rot_comp_basis=True, dev=device)
 
-def get_U_RWA(Ω, dt, t, Δ_e=0.0, ω_RF=None, detuning_cutoff=1e3):
+def get_U_RWA(
+    Ω, dt, t, Δ_e=0.0, ω_RF=None, detuning_cutoff=1e3, H_noise=None
+):
     """
     Plug-compatible wrapper so your optimization scripts can just import get_U_RWA.
     """
-    return get_U_RWA_multi(Ω, dt, t, Δ_e=Δ_e, ω_RF=ω_RF, detuning_cutoff=detuning_cutoff, pc=_PC, include_eC_mod=True)
+    return get_U_RWA_multi(
+        Ω,
+        dt,
+        t,
+        Δ_e=Δ_e,
+        ω_RF=ω_RF,
+        detuning_cutoff=detuning_cutoff,
+        pc=_PC,
+        include_eC_mod=True,
+        H_noise=H_noise,
+    )
 
 
 def set_active_carbons(c_indices):

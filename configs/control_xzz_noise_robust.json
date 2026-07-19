@@ -1,0 +1,74 @@
+{
+  "basis_size": 11,
+  "pulse_parameterization": "direct_fourier",
+  "active_carbons": [
+    1,
+    2
+  ],
+  "logical_carbons": [
+    1,
+    2
+  ],
+  "mI_block": 0,
+  "electron_map": [
+    "m1",
+    "0"
+  ],
+  "target_angle_rad": 0.7853981633974483,
+  "min_frequency_mhz": -5.0,
+  "max_frequency_mhz": 5.0,
+  "phase_bound_pi": 1.0,
+  "taper_fraction": 0.15,
+  "pair_weight": 0.2,
+  "tripartite_weight": 0.5,
+  "trajectory_sample_stride": 4,
+  "validate_trajectory_propagator": true,
+  "deterministic_algorithms": false,
+  "gate": "xzz",
+  "duration_ns": 1250.0,
+  "output_dir": "results/control_xzz_noise_robust",
+  "resume_from": "results_paper/pulse_nondiagonal",
+  "seed": 13,
+  "max_rabi_mhz": 5.0,
+  "adam": {
+    "enabled": true,
+    "steps": 200,
+    "learning_rate": 0.00075,
+    "steps_per_ns": 0.25,
+    "gradient_clip_norm": 2.0
+  },
+  "lbfgs": {
+    "enabled": true,
+    "max_iter": 80,
+    "history_size": 30,
+    "tolerance_grad": 1e-10,
+    "tolerance_change": 1e-13,
+    "steps_per_ns": 0.5,
+    "line_search_fn": "strong_wolfe"
+  },
+  "objective_weights": {
+    "corrected_infidelity": 5.0,
+    "selected_phase": 0.25,
+    "diagonality": 0.25,
+    "unitarity": 0.1,
+    "survival": 0.1,
+    "peak": 100.0,
+    "fluence": 0.0,
+    "smoothness": 1e-06,
+    "electron_dephasing_exposure": 0.03
+  },
+  "final_steps_per_ns": 1.0,
+  "warm_start": {
+    "enabled": true,
+    "fit_steps": 1200,
+    "fit_restarts": 5,
+    "fit_lbfgs_steps": 80,
+    "learning_rate": 0.015,
+    "gradient_clip_norm": 5.0,
+    "warning_relative_error": 0.25,
+    "evaluate_reference": true,
+    "accept_imperfect_fit": true,
+    "minimum_corrected_fidelity": 0.9,
+    "cache_fit": true
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "gate": "zzz",
+  "duration_ns": 1500.0,
+  "basis_size": 11,
+  "pulse_parameterization": "direct_fourier",
+  "output_dir": "results/control_zzz_final",
+  "resume_from": "results/control_zzz_direct",
+  "seed": 11,
+  "active_carbons": [
+    1,
+    2
+  ],
+  "logical_carbons": [
+    1,
+    2
+  ],
+  "mI_block": 0,
+  "electron_map": [
+    "m1",
+    "0"
+  ],
+  "target_angle_rad": 0.7853981633974483,
+  "max_rabi_mhz": 6.001,
+  "min_frequency_mhz": -5.0,
+  "max_frequency_mhz": 5.0,
+  "phase_bound_pi": 1.0,
+  "taper_fraction": 0.15,
+  "pair_weight": 0.2,
+  "tripartite_weight": 0.5,
+  "adam": {
+    "enabled": false,
+    "steps": 0,
+    "learning_rate": 0.001,
+    "steps_per_ns": 0.5,
+    "gradient_clip_norm": 2.0
+  },
+  "lbfgs": {
+    "enabled": false,
+    "max_iter": 0,
+    "history_size": 50,
+    "tolerance_grad": 1e-11,
+    "tolerance_change": 1e-14,
+    "steps_per_ns": 1.0,
+    "line_search_fn": "strong_wolfe"
+  },
+  "objective_weights": {
+    "corrected_infidelity": 5.0,
+    "selected_phase": 0.25,
+    "diagonality": 0.25,
+    "unitarity": 0.1,
+    "survival": 0.1,
+    "peak": 100.0,
+    "fluence": 0.0,
+    "smoothness": 1e-06
+  },
+  "final_steps_per_ns": 4.0,
+  "warm_start": {
+    "enabled": true,
+    "fit_steps": 1500,
+    "fit_restarts": 6,
+    "fit_lbfgs_steps": 100,
+    "learning_rate": 0.015,
+    "gradient_clip_norm": 5.0,
+    "warning_relative_error": 0.25,
+    "evaluate_reference": true,
+    "accept_imperfect_fit": true,
+    "minimum_corrected_fidelity": 0.8,
+    "cache_fit": true
+  }
+}

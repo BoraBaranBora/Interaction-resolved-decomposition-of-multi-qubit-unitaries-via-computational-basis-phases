@@ -1,0 +1,18 @@
+{
+  "artifact": "gradient_control_integration",
+  "date": "2026-07-18",
+  "python_target": "3.10+",
+  "fast_tests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "mock_repository_smoke_test": "passed",
+  "actual_nv_optimization_executed_in_artifact_environment": false,
+  "reason": "The complete local repository and binary reference checkpoints were not mounted in the artifact runtime.",
+  "required_user_checks": [
+    "Run gradient-check against the local NV model for ZZZ and XZZ.",
+    "Verify the exact published waveform fidelity and ABC-coordinate sign printed at startup.",
+    "Inspect the legacy-waveform Fourier fit error before launching long optimization.",
+    "Evaluate refined checkpoints at the production grid and rerun the OU sweep."
+  ]
+}

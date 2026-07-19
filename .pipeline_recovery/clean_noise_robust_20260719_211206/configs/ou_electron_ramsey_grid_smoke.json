@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "name": "electron_ramsey_experiment_focused_grid_smoke",
+  "description": "Fast smoke test of the electron-only Ramsey OU grid focused on experimentally observed or experimentally inferred NV bath-correlation regimes.",
+  "gates": {
+    "diagonal": {
+      "label": "ZZZ",
+      "pulse_dir": "results/control_zzz_direct",
+      "note": "Final direct 11-component Fourier ZZZ pulse. Change only if a later independently verified direct checkpoint replaces it."
+    },
+    "nondiagonal": {
+      "label": "XZZ",
+      "pulse_dir": "results_paper/pulse_nondiagonal",
+      "note": "Direct 11-component Fourier XZZ pulse."
+    }
+  },
+  "t2_star_regimes": [
+    {
+      "value_us": 2.0,
+      "status": "literature_modeled_conservative",
+      "citation_key": "stark2018clock",
+      "description": "Conservative Ramsey scale used in published NV-center OU magnetic-noise modeling."
+    },
+    {
+      "value_us": 5.0,
+      "status": "experimentally_observed_register",
+      "citation_key": "vandestolpe2024network",
+      "description": "Register-representative point close to the measured electron T2*=4.9(2) us."
+    },
+    {
+      "value_us": 10.0,
+      "status": "favorable_sensitivity",
+      "citation_key": null,
+      "description": "Favorable sensitivity-analysis point."
+    },
+    {
+      "value_us": 20.0,
+      "status": "favorable_sensitivity",
+      "citation_key": null,
+      "description": "Intermediate favorable sensitivity-analysis point."
+    },
+    {
+      "value_us": 50.0,
+      "status": "enriched_material_benchmark",
+      "citation_key": "niemeyer2013broadband",
+      "description": "Conservative enriched-material benchmark; Ramsey times above 200 us have been reported in highly 12C-enriched diamond."
+    }
+  ],
+  "tau_c_regimes": [
+    {
+      "value_us": 0.3,
+      "status": "experimentally_inferred_fast_ensemble",
+      "citation_key": "hayashi2020noise",
+      "description": "Representative fast-bath point within correlation times inferred by fitting NV-ensemble Hahn-echo data across spin concentrations; not a direct measurement for this register."
+    },
+    {
+      "value_us": 1.0,
+      "status": "experimentally_inferred_gate_scale_ensemble",
+      "citation_key": "hayashi2020noise",
+      "description": "Representative gate-scale point within experimentally inferred NV-ensemble correlation-time ranges; not a direct measurement for this register."
+    },
+    {
+      "value_us": 3.0,
+      "status": "experimentally_inferred_intermediate_ensemble",
+      "citation_key": "hayashi2020noise",
+      "description": "Representative intermediate point within experimentally inferred NV-ensemble correlation-time ranges; not a direct measurement for this register."
+    },
+    {
+      "value_us": 30.0,
+      "status": "experimentally_observed_bath",
+      "citation_key": "delange2012bath",
+      "description": "Directly measured single-NV P1-bath autocorrelation regime: 30 +/- 8 us for the complete environment and 24 +/- 8 us for a resolved bath group."
+    }
+  ],
+  "n_realizations": 8,
+  "seed": 7,
+  "common_random_numbers": true,
+  "propagation_steps_per_ns": 1.0
+}

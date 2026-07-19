@@ -1,0 +1,78 @@
+{
+  "schema_version": 3,
+  "name": "electron_ou_experimental_reference_publication",
+  "description": "Three experimental material scenarios evaluated as separate source-consistent points and overlaid on the Cartesian sensitivity map.",
+  "gates": {
+    "diagonal": {
+      "label": "ZZZ",
+      "pulse_dir": "results/control_zzz_direct",
+      "note": "Final direct 11-component Fourier ZZZ pulse.",
+      "pulse_variant": "reference"
+    },
+    "nondiagonal": {
+      "label": "XZZ",
+      "pulse_dir": "results_paper/pulse_nondiagonal",
+      "note": "Direct 11-component Fourier XZZ pulse.",
+      "pulse_variant": "reference"
+    }
+  },
+  "noise_scenarios": [
+    {
+      "id": "bargill_12c_cvd",
+      "label": "Purified 12C CVD bath",
+      "source": "Bar-Gill et al., Nature Communications 3, 858 (2012)",
+      "citation_key": "bargill2012spectroscopy",
+      "material": "CVD diamond, approximately 1 ppm substitutional nitrogen and 0.01% 13C",
+      "role": "favorable spectroscopically measured material",
+      "calibration": {
+        "type": "bar_gill_lorentzian",
+        "delta_khz": 30.0,
+        "delta_uncertainty_khz": 10.0,
+        "tau_c_us": 10.0,
+        "tau_c_uncertainty_us": 5.0,
+        "conversion_note": "The Lorentzian coupling scale Delta is identified with the rms detuning width and converted from cycles/s to angular frequency."
+      },
+      "notes": "Direct bath spectral decomposition; source-native Delta and tau_c are used together."
+    },
+    {
+      "id": "hayashi_hpht_no8",
+      "label": "Intermediate HPHT bath",
+      "source": "Hayashi et al., JPSJ 89, 054708 (2020), sample No. 8",
+      "citation_key": "hayashi2020noise",
+      "material": "HPHT-grown diamond; P1 density 1.2e17 cm^-3 and NV density 1.1e17 cm^-3",
+      "role": "intermediate same-sample fitted environment",
+      "calibration": {
+        "type": "hayashi_lambda",
+        "lambda_mhz": 0.025,
+        "tau_c_us": 14.0,
+        "digitized": true,
+        "conversion_note": "Hayashi uses H_I=lambda f(t) sigma_z. Under H_noise=beta(t) Z/2, beta=2 lambda f; lambda is converted from MHz to angular frequency."
+      },
+      "notes": "The plotted lambda and tau_c are rounded; they must not be quoted with greater precision."
+    },
+    {
+      "id": "bauch_12c_2ppm",
+      "label": "Engineered 12C, 2 ppm N",
+      "source": "Bauch et al., Physical Review B 102, 134210 (2020)",
+      "citation_key": "bauch2020decoherence",
+      "material": "Representative 99.95%+ 12C ensemble with 2 ppm substitutional nitrogen",
+      "role": "engineered-material benchmark derived from measured concentration scaling",
+      "calibration": {
+        "type": "bauch_concentration_scaling",
+        "nitrogen_ppm": 2.0,
+        "t2_star_us_ppm": 9.6,
+        "t2_star_scale_uncertainty_us_ppm": 0.9,
+        "echo_t2_us_ppm": 160.0,
+        "echo_t2_scale_uncertainty_us_ppm": 12.0,
+        "echo_t2_other_us": 694.0,
+        "echo_t2_other_uncertainty_us": 82.0,
+        "conversion_note": "T2* and T2 are evaluated from the measured concentration laws at 2 ppm, then converted to one OU pair by matching the Ramsey and Hahn-echo envelopes. No echo pulse is used during gate propagation."
+      },
+      "notes": "This is a concentration-scaled material benchmark, not a separately tabulated sample row."
+    }
+  ],
+  "n_realizations": 512,
+  "seed": 7,
+  "common_random_numbers": true,
+  "propagation_steps_per_ns": 1.0
+}

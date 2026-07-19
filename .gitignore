@@ -15,3 +15,53 @@ __pycache__/
 
 fom_log.txt
 .DS_Store
+
+# Local Python environment
+.venv/
+
+# OU dephasing implementation
+!reproduce_dephasing.py
+!src/ou_dephasing.py
+!tests/
+!tests/*.py
+
+# Generated dephasing data
+results_ou/
+figs/*/ou_dephasing/
+EOF
+results_ou/
+
+# Reproducible OU sweep scripts and configurations
+!scripts/
+!scripts/*.py
+!configs/
+!configs/*.json
+
+# Gradient-based control optimization
+!optimize_control.py
+!control_optimization/
+!control_optimization/*.py
+!evaluation/
+!evaluation/*.py
+!noise/
+!noise/*.py
+!legacy/
+!legacy/*.md
+!configs/control_*.json
+!tests/test_control_*.py
+!tests/test_fourier_pulse.py
+!tests/test_config.py
+
+# Generated optimization outputs
+results/control_*_refined/
+# Generated stochastic-ensemble outputs
+# Keep the production noise source visible despite broad Python ignore rules
+!scripts/run_ou_sweep.py
+!scripts/aggregate_ou_sweep.py
+!tests/test_ou_ramsey.py
+!tests/test_noise_model.py
+!tests/test_noise_sweep_config.py
+!configs/ou_electron_ramsey_grid.json
+!configs/ou_electron_ramsey_grid_smoke.json
+!configs/ou_three_materials.json
+!configs/ou_three_materials_smoke.json

@@ -1,0 +1,17 @@
+# Gradient-based control optimization
+!optimize_control.py
+!control_optimization/
+!control_optimization/*.py
+!evaluation/
+!evaluation/*.py
+!noise/
+!noise/*.py
+!legacy/
+!legacy/*.md
+!configs/control_*.json
+!tests/test_control_*.py
+!tests/test_fourier_pulse.py
+!tests/test_config.py
+
+# Generated optimization outputs
+results/control_*_refined/

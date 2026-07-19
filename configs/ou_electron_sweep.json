@@ -1,0 +1,9 @@
+{
+  "name": "electron_ramsey_grid",
+  "description": "OU electron-dephasing sweep for the saved ZZZ and XZZ pulses.",
+  "gates": ["diagonal", "nondiagonal"],
+  "t2_star_us": [2.0, 5.0, 10.0, 20.0, 50.0],
+  "tau_c_over_t2_star": [0.1, 1.0, 10.0],
+  "n_realizations": 128,
+  "seed": 7
+}

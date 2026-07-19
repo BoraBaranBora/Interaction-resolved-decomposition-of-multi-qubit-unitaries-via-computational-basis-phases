@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "name": "electron_ou_cartesian_robust_smoke",
+  "description": "Cartesian Ramsey/correlation-time sweep for electron-only OU dephasing. The grid is a controlled sensitivity map, not a set of claimed same-sample material pairs.",
+  "gates": {
+    "diagonal": {
+      "label": "ZZZ",
+      "pulse_dir": "results_smoke/control_zzz_noise_robust",
+      "note": "Final direct 11-component Fourier ZZZ pulse. Change only if a later independently verified direct checkpoint replaces it.",
+      "pulse_variant": "robust"
+    },
+    "nondiagonal": {
+      "label": "XZZ",
+      "pulse_dir": "results_smoke/control_xzz_noise_robust",
+      "note": "Direct 11-component Fourier XZZ pulse.",
+      "pulse_variant": "robust"
+    }
+  },
+  "t2_star_regimes": [
+    {
+      "value_us": 2.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Ramsey-axis sensitivity point."
+    },
+    {
+      "value_us": 5.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Ramsey-axis sensitivity point."
+    },
+    {
+      "value_us": 10.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Ramsey-axis sensitivity point."
+    },
+    {
+      "value_us": 20.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Ramsey-axis sensitivity point."
+    },
+    {
+      "value_us": 50.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Ramsey-axis sensitivity point."
+    }
+  ],
+  "tau_c_regimes": [
+    {
+      "value_us": 0.1,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Correlation-time sensitivity point."
+    },
+    {
+      "value_us": 0.3,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Correlation-time sensitivity point."
+    },
+    {
+      "value_us": 1.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Correlation-time sensitivity point."
+    },
+    {
+      "value_us": 3.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Correlation-time sensitivity point."
+    },
+    {
+      "value_us": 15.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Correlation-time sensitivity point."
+    },
+    {
+      "value_us": 30.0,
+      "status": "sensitivity_grid",
+      "citation_key": null,
+      "description": "Correlation-time sensitivity point."
+    }
+  ],
+  "n_realizations": 4,
+  "seed": 7,
+  "common_random_numbers": true,
+  "propagation_steps_per_ns": 0.1
+}

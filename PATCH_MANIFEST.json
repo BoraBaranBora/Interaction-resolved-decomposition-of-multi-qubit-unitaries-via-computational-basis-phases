@@ -1,0 +1,26 @@
+{
+  "name": "electron-ou-three-realistic-materials",
+  "schema_version": 5,
+  "primary_noise_channel": "electron longitudinal detuning beta(t) Z_A/2",
+  "calibration": "source-native material characterization",
+  "scenario_ids": [
+    "bargill_12c_cvd",
+    "hayashi_hpht_no8",
+    "bauch_12c_2ppm"
+  ],
+  "default_realizations": 256,
+  "default_steps_per_ns": 1.0,
+  "zzz_checkpoint": "results/control_zzz_direct/pulse_solution.pt",
+  "xzz_checkpoint": "results_paper/pulse_nondiagonal/pulse_solution.pt",
+  "echo_or_dd_during_gate": false,
+  "nuclear_noise_channels": false,
+  "conditions": 6,
+  "result_root_name": "electron_ou_three_realistic_materials_N<realizations>",
+  "source_references": {
+    "bargill_12c_cvd": "10.1038/ncomms1856",
+    "hayashi_hpht_no8": "10.7566/JPSJ.89.054708",
+    "bauch_12c_2ppm": "10.1103/PhysRevB.102.134210"
+  },
+  "resolved_scenario_file": "resolved_material_scenarios.json",
+  "design_note": "Exactly three explicit material scenarios; no Cartesian product of noise parameters."
+}
