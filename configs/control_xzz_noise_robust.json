@@ -1,6 +1,6 @@
 {
   "basis_size": 11,
-  "pulse_parameterization": "direct_fourier",
+  "pulse_parameterization": "reference_residual_fourier",
   "active_carbons": [
     1,
     2
@@ -21,7 +21,6 @@
   "taper_fraction": 0.15,
   "pair_weight": 0.2,
   "tripartite_weight": 0.5,
-  "trajectory_sample_stride": 4,
   "validate_trajectory_propagator": true,
   "deterministic_algorithms": false,
   "gate": "xzz",
@@ -43,7 +42,7 @@
     "history_size": 30,
     "tolerance_grad": 1e-10,
     "tolerance_change": 1e-13,
-    "steps_per_ns": 0.5,
+    "steps_per_ns": 0.25,
     "line_search_fn": "strong_wolfe"
   },
   "objective_weights": {
@@ -55,19 +54,19 @@
     "peak": 100.0,
     "fluence": 0.0,
     "smoothness": 1e-06,
-    "electron_dephasing_exposure": 0.03
+    "population_100_sum": 0.0003
   },
   "final_steps_per_ns": 1.0,
   "warm_start": {
     "enabled": true,
-    "fit_steps": 1200,
-    "fit_restarts": 5,
-    "fit_lbfgs_steps": 80,
+    "fit_steps": 0,
+    "fit_restarts": 1,
+    "fit_lbfgs_steps": 0,
     "learning_rate": 0.015,
     "gradient_clip_norm": 5.0,
     "warning_relative_error": 0.25,
     "evaluate_reference": true,
-    "accept_imperfect_fit": true,
+    "accept_imperfect_fit": false,
     "minimum_corrected_fidelity": 0.9,
     "cache_fit": true
   }

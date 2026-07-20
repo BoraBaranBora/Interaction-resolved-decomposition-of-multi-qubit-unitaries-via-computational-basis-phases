@@ -40,9 +40,9 @@
     "objective_weights": {
       "corrected_infidelity": 5.0,
       "diagonality": 0.25,
-      "electron_dephasing_exposure": 0.03,
       "fluence": 0.0,
       "peak": 100.0,
+      "population_100_sum": 0.0003,
       "selected_phase": 0.25,
       "smoothness": 1e-06,
       "survival": 0.1,
@@ -56,7 +56,6 @@
     "seed": 11,
     "taper_fraction": 0.15,
     "target_angle_rad": 0.7853981633974483,
-    "trajectory_sample_stride": 2,
     "tripartite_weight": 0.5,
     "validate_trajectory_propagator": true,
     "warm_start": {
@@ -91,20 +90,19 @@
   },
   "gate": "ZZZ",
   "git": {
-    "branch": "noise-robust-gates",
-    "commit": "23eef18afb72cd3e41ea492b09a2ee59795b95aa",
+    "branch": "feature/noise-robust-tripartite",
+    "commit": "f8acc37d4a16e57703511b0225a7e31a03e00658",
     "dirty": true
   },
-  "loss": 0.026620619143916127,
+  "loss": 0.022998888351024736,
   "manuscript_equation_exact": true,
   "metrics": {
     "corrected_fidelity": 0.9983570808987011,
     "corrected_infidelity": 0.0016429191012988786,
     "diagonality": 0.0016295071104122582,
-    "electron_dephasing_exposure": 0.5998901984899841,
-    "electron_manifold_excursion": 0.4312503945779578,
     "fluence": 0.26617578014367366,
     "peak_penalty": 0.0,
+    "population_100_sum": 47.91658387269378,
     "selected_phase": 7.705461904428113e-06,
     "smoothness": 0.014528252648724977,
     "survival": 0.9999999998860961,
@@ -116,7 +114,7 @@
   "peak_field_uT": 214.28516609037442,
   "peak_fraction_of_bound": 0.9999974417550805,
   "pulse_parameterization": "direct_fourier",
-  "timestamp": "2026-07-19_19-13-15_UTC",
+  "timestamp": "2026-07-19_20-31-13_UTC",
   "warm_start": {
     "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results\\control_zzz_direct\\pulse_solution.pt",
     "parameterization": "direct_fourier",

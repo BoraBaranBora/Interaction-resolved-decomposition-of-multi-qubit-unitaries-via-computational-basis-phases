@@ -65,3 +65,19 @@ results/control_*_refined/
 !configs/ou_electron_ramsey_grid_smoke.json
 !configs/ou_three_materials.json
 !configs/ou_three_materials_smoke.json
+
+# Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environment
+venv/
+
+# Generated simulations
+generated/stage3_configs/
+
+# Temporary files
+*.tmp
+*.log
+sweep_manifest.json.tmp

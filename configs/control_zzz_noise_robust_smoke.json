@@ -21,7 +21,6 @@
   "taper_fraction": 0.15,
   "pair_weight": 0.2,
   "tripartite_weight": 0.5,
-  "trajectory_sample_stride": 2,
   "validate_trajectory_propagator": true,
   "deterministic_algorithms": false,
   "gate": "zzz",
@@ -55,7 +54,7 @@
     "peak": 100.0,
     "fluence": 0.0,
     "smoothness": 1e-06,
-    "electron_dephasing_exposure": 0.03
+    "population_100_sum": 0.0003
   },
   "final_steps_per_ns": 0.1,
   "warm_start": {

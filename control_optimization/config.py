@@ -21,6 +21,7 @@ class WarmStartConfig:
     accept_imperfect_fit: bool = False
     minimum_corrected_fidelity: float = 0.0
     cache_fit: bool = True
+    parameter_noise_std: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -53,7 +54,7 @@ class ObjectiveWeights:
     peak: float = 0.0
     fluence: float = 1.0e-5
     smoothness: float = 1.0e-4
-    electron_dephasing_exposure: float = 0.0
+    population_100_sum: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -78,7 +79,6 @@ class ControlConfig:
     pair_weight: float = 0.2
     tripartite_weight: float = 0.5
     final_steps_per_ns: float = 1.0
-    trajectory_sample_stride: int = 1
     validate_trajectory_propagator: bool = True
     deterministic_algorithms: bool = False
     warm_start: WarmStartConfig = field(default_factory=WarmStartConfig)
@@ -112,10 +112,8 @@ class ControlConfig:
             raise ValueError("max_rabi_mhz must be positive.")
         if self.final_steps_per_ns <= 0:
             raise ValueError("final_steps_per_ns must be positive.")
-        if self.trajectory_sample_stride < 1:
-            raise ValueError("trajectory_sample_stride must be positive.")
-        if self.objective_weights.electron_dephasing_exposure < 0.0:
-            raise ValueError("objective_weights.electron_dephasing_exposure cannot be negative.")
+        if self.objective_weights.population_100_sum < 0.0:
+            raise ValueError("objective_weights.population_100_sum cannot be negative.")
         if len(self.logical_carbons) != 2:
             raise ValueError("logical_carbons must contain exactly two carbon labels.")
         if not set(self.logical_carbons).issubset(set(self.active_carbons)):
@@ -128,6 +126,8 @@ class ControlConfig:
             raise ValueError("warm_start.fit_restarts must be at least one.")
         if self.warm_start.fit_lbfgs_steps < 0:
             raise ValueError("warm_start.fit_lbfgs_steps cannot be negative.")
+        if self.warm_start.parameter_noise_std < 0.0:
+            raise ValueError("warm_start.parameter_noise_std cannot be negative.")
         if not 0.0 <= self.warm_start.minimum_corrected_fidelity <= 1.0:
             raise ValueError(
                 "warm_start.minimum_corrected_fidelity must lie in [0, 1]."

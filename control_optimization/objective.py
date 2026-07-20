@@ -113,15 +113,10 @@ class SupportSelectiveObjective:
         fluence: torch.Tensor,
         smoothness: torch.Tensor,
         peak_penalty: torch.Tensor | None = None,
-        electron_dephasing_exposure: torch.Tensor | None = None,
-        electron_manifold_excursion: torch.Tensor | None = None,
+        population_100_sum: torch.Tensor | None = None,
     ) -> ObjectiveResult:
-        if electron_dephasing_exposure is None:
-            electron_dephasing_exposure = torch.zeros(
-                (), dtype=self.real_dtype, device=self.device
-            )
-        if electron_manifold_excursion is None:
-            electron_manifold_excursion = torch.zeros(
+        if population_100_sum is None:
+            population_100_sum = torch.zeros(
                 (), dtype=self.real_dtype, device=self.device
             )
         logical = self.logical_block(full_propagator)
@@ -165,8 +160,7 @@ class SupportSelectiveObjective:
             "peak_penalty": peak_penalty,
             "fluence": fluence,
             "smoothness": smoothness,
-            "electron_dephasing_exposure": electron_dephasing_exposure,
-            "electron_manifold_excursion": electron_manifold_excursion,
+            "population_100_sum": population_100_sum,
             "corrected_fidelity": corrected_fidelity,
             "survival": survival,
         }
@@ -181,6 +175,6 @@ class SupportSelectiveObjective:
             + w.peak * peak_penalty
             + w.fluence * fluence
             + w.smoothness * smoothness
-            + w.electron_dephasing_exposure * electron_dephasing_exposure
+            + w.population_100_sum * population_100_sum
         )
         return ObjectiveResult(loss=loss, components=components, coordinates=coordinates)

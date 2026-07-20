@@ -1,0 +1,22 @@
+[
+  {
+    "gate": "ZZZ",
+    "local_equivalence_fidelity": 0.995999828245864,
+    "population_refined_fidelity": 0.9962770769880894,
+    "fidelity_change": 0.0002772487422254555,
+    "local_equivalence_p100_sum": 50.39912927135239,
+    "population_refined_p100_sum": 45.715050815749166,
+    "p100_sum_reduction": 4.6840784556032276,
+    "p100_fractional_reduction": 0.0929396702546948
+  },
+  {
+    "gate": "XZZ",
+    "local_equivalence_fidelity": 0.9992918063175193,
+    "population_refined_fidelity": 0.9992432007166832,
+    "fidelity_change": -4.8605600836193474e-05,
+    "local_equivalence_p100_sum": 43.87259163878785,
+    "population_refined_p100_sum": 42.90737296594774,
+    "p100_sum_reduction": 0.9652186728401162,
+    "p100_fractional_reduction": 0.022000493629073973
+  }
+]

@@ -17,6 +17,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import json
+import os
+import time
+import uuid
+from pathlib import Path
+from typing import Any
+
 
 GATE_LABELS = {"diagonal": "ZZZ", "nondiagonal": "XZZ"}
 
@@ -134,10 +141,43 @@ def run_and_tee(command: list[str], *, cwd: Path, log_path: Path) -> int:
         return process.wait()
 
 
-def write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    temporary.replace(path)
+def write_json_atomic(
+    path: Path,
+    payload: Any,
+    *,
+    retries: int = 20,
+    initial_delay_s: float = 0.05,
+) -> None:
+    """Write JSON atomically, retrying transient Windows file locks."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    temporary = path.with_name(
+        f".{path.name}.{os.getpid()}.{uuid.uuid4().hex}.tmp"
+    )
+
+    try:
+        with temporary.open("w", encoding="utf-8", newline="\n") as handle:
+            json.dump(payload, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+
+        for attempt in range(retries):
+            try:
+                os.replace(temporary, path)
+                return
+            except PermissionError:
+                if attempt == retries - 1:
+                    raise
+
+                time.sleep(initial_delay_s * (attempt + 1))
+
+    finally:
+        try:
+            temporary.unlink(missing_ok=True)
+        except PermissionError:
+            pass
 
 
 def parse_args() -> argparse.Namespace:

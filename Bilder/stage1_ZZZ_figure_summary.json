@@ -1,0 +1,16 @@
+{
+  "gate": "ZZZ",
+  "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage1_local_equivalence\\zzz\\pulse_solution.pt",
+  "pulse_figure": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\Bilder\\stage1_ZZZ_pulse.png",
+  "phase_figure": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\Bilder\\stage1_ZZZ_phase_trajectories.png",
+  "phase_csv": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\Bilder\\stage1_ZZZ_phase_trajectories.csv",
+  "final_coordinates": {
+    "A": 3.904348496684593,
+    "B": 1.3601786086780976e-05,
+    "C": 0.00027555034102277887,
+    "AB": 1.6007438382218138,
+    "AC": -4.702394925367769,
+    "BC": -0.00034423146356998835,
+    "ABC": -0.8026319125102853
+  }
+}

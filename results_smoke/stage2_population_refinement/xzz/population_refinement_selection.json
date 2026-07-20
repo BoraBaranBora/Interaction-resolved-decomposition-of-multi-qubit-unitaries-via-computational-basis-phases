@@ -1,0 +1,44 @@
+{
+  "minimum_fidelity": 0.997,
+  "maximum_fidelity_drop": 0.001,
+  "threshold_met": true,
+  "selection_mode": "absolute_and_relative_threshold",
+  "reference": {
+    "directory": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage1_local_equivalence\\xzz",
+    "fidelity": 0.9992918063175193,
+    "population_100_sum": 43.87259163878785,
+    "loss": 0.003717556700786135
+  },
+  "selected": {
+    "directory": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage2_population_refinement\\xzz_1em03",
+    "fidelity": 0.9992432007166832,
+    "population_100_sum": 42.90737296594774,
+    "loss": 0.046875811078752945
+  },
+  "candidates": [
+    {
+      "directory": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage1_local_equivalence\\xzz",
+      "fidelity": 0.9992918063175193,
+      "population_100_sum": 43.87259163878785,
+      "loss": 0.003717556700786135
+    },
+    {
+      "directory": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage2_population_refinement\\xzz_1em04",
+      "fidelity": 0.9992864966473594,
+      "population_100_sum": 43.60211333958488,
+      "loss": 0.008105503753648245
+    },
+    {
+      "directory": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage2_population_refinement\\xzz_3em04",
+      "fidelity": 0.9992893656855979,
+      "population_100_sum": 43.52607996126581,
+      "loss": 0.016788541222122894
+    },
+    {
+      "directory": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage2_population_refinement\\xzz_1em03",
+      "fidelity": 0.9992432007166832,
+      "population_100_sum": 42.90737296594774,
+      "loss": 0.046875811078752945
+    }
+  ]
+}

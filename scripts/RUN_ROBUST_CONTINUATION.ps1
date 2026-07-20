@@ -31,7 +31,7 @@ foreach ($g in $gateList) {
         $candidateConfig = ($base | ConvertTo-Json -Depth 20 | ConvertFrom-Json)
         $candidateConfig.resume_from = $resume
         $candidateConfig.output_dir = $outputDir
-        $candidateConfig.pulse_parameterization = "direct_fourier"
+        $candidateConfig.pulse_parameterization = if ($g -eq "zzz") { "direct_fourier" } else { "reference_residual_fourier" }
         $candidateConfig.objective_weights.electron_dephasing_exposure = $weight
 
         $configDir = Join-Path $ProjectRoot "results/_robust_configs"

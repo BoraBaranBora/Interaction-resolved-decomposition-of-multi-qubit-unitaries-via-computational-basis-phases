@@ -1,4 +1,4 @@
-"""Select the lowest-exposure pulse satisfying a fidelity threshold."""
+"""Select the lowest-P100-sum pulse satisfying a fidelity threshold."""
 
 from __future__ import annotations
 
@@ -32,21 +32,20 @@ def main() -> None:
             {
                 "directory": directory,
                 "fidelity": float(metrics["corrected_fidelity"]),
-                "exposure": float(metrics["electron_dephasing_exposure"]),
-                "excursion": float(metrics["electron_manifold_excursion"]),
+                "population_100_sum": float(metrics["population_100_sum"]),
                 "loss": float(summary["loss"]),
             }
         )
     accepted = [row for row in rows if row["fidelity"] >= args.minimum_fidelity]
     if not accepted:
         details = "\n".join(
-            f"{row['directory']}: F={row['fidelity']:.10f}, exposure={row['exposure']:.6g}"
+            f"{row['directory']}: F={row['fidelity']:.10f}, P100 sum={row['population_100_sum']:.6g}"
             for row in rows
         )
         raise RuntimeError(
             f"No candidate reached minimum fidelity {args.minimum_fidelity}.\n{details}"
         )
-    selected = min(accepted, key=lambda row: (row["exposure"], -row["fidelity"]))
+    selected = min(accepted, key=lambda row: (row["population_100_sum"], -row["fidelity"]))
     output = args.output_dir if args.output_dir.is_absolute() else (root / args.output_dir).resolve()
     if output.exists():
         if not args.overwrite:
@@ -63,7 +62,7 @@ def main() -> None:
     )
     print(f"Selected: {selected['directory']}")
     print(f"Fidelity: {selected['fidelity']:.10f}")
-    print(f"Exposure: {selected['exposure']:.8f}")
+    print(f"P100 sum: {selected['population_100_sum']:.8f}")
     print(f"Canonical output: {output}")
 
 

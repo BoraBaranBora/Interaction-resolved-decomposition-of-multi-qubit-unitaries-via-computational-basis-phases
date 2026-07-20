@@ -1,17 +1,10 @@
 {
-  "gate": "XZZ",
-  "reference": {
-    "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_paper\\pulse_nondiagonal\\pulse_solution.pt",
-    "exposure_integral": 0.5479531079342693,
-    "excursion_integral": 0.2522548883067812,
-    "propagator_relative_error": 0.0
-  },
-  "robust": {
-    "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\control_xzz_noise_robust\\pulse_solution.pt",
-    "exposure_integral": 0.5380454283004492,
-    "excursion_integral": 0.2936442007346783,
-    "propagator_relative_error": 0.0
-  },
-  "relative_exposure_reduction": 0.018081254564229265,
-  "relative_excursion_reduction": -0.1640773453617328
+  "gate": "xzz",
+  "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\control_xzz_noise_robust\\pulse_solution.pt",
+  "initial_state": "000",
+  "highlight_state": "100",
+  "highlight_integral_ns": 428.2105775429672,
+  "minimum_logical_survival": 0.9999999999984308,
+  "final_logical_survival": 0.9999999999984311,
+  "figure": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\Bilder\\electron_population_integral_XZZ.png"
 }

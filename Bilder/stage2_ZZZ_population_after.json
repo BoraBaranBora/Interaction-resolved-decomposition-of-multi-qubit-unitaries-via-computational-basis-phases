@@ -1,0 +1,10 @@
+{
+  "gate": "zzz",
+  "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage2_population_refinement\\zzz\\pulse_solution.pt",
+  "initial_state": "000",
+  "highlight_state": "100",
+  "highlight_integral_ns": 464.89152992504626,
+  "minimum_logical_survival": 0.9999999999898238,
+  "final_logical_survival": 0.9999999999898241,
+  "figure": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\Bilder\\stage2_ZZZ_population_after.png"
+}

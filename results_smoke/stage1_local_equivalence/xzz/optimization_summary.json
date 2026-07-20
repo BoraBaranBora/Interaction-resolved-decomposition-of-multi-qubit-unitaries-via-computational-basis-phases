@@ -1,0 +1,126 @@
+{
+  "config": {
+    "active_carbons": [
+      1,
+      2
+    ],
+    "adam": {
+      "enabled": true,
+      "gradient_clip_norm": 2.0,
+      "learning_rate": 0.0005,
+      "steps": 3,
+      "steps_per_ns": 0.05
+    },
+    "basis_size": 11,
+    "deterministic_algorithms": false,
+    "duration_ns": 1250.0,
+    "electron_map": [
+      "m1",
+      "0"
+    ],
+    "final_steps_per_ns": 0.1,
+    "gate": "xzz",
+    "lbfgs": {
+      "enabled": false,
+      "history_size": 5,
+      "line_search_fn": "strong_wolfe",
+      "max_iter": 0,
+      "steps_per_ns": 0.05,
+      "tolerance_change": 1e-12,
+      "tolerance_grad": 1e-09
+    },
+    "logical_carbons": [
+      1,
+      2
+    ],
+    "mI_block": 0,
+    "max_frequency_mhz": 5.0,
+    "max_rabi_mhz": 5.0,
+    "min_frequency_mhz": -5.0,
+    "objective_weights": {
+      "corrected_infidelity": 5.0,
+      "diagonality": 0.25,
+      "fluence": 0.0,
+      "peak": 100.0,
+      "population_100_sum": 0.0,
+      "selected_phase": 0.25,
+      "smoothness": 1e-06,
+      "survival": 0.1,
+      "unitarity": 0.1
+    },
+    "output_dir": "results_smoke/stage1_local_equivalence/xzz",
+    "pair_weight": 0.2,
+    "phase_bound_pi": 1.0,
+    "pulse_parameterization": "reference_residual_fourier",
+    "resume_from": "results_paper/pulse_nondiagonal",
+    "seed": 13,
+    "taper_fraction": 0.15,
+    "target_angle_rad": 0.7853981633974483,
+    "tripartite_weight": 0.5,
+    "validate_trajectory_propagator": true,
+    "warm_start": {
+      "accept_imperfect_fit": false,
+      "cache_fit": true,
+      "enabled": true,
+      "evaluate_reference": true,
+      "fit_lbfgs_steps": 0,
+      "fit_restarts": 1,
+      "fit_steps": 0,
+      "gradient_clip_norm": 5.0,
+      "learning_rate": 0.015,
+      "minimum_corrected_fidelity": 0.9,
+      "parameter_noise_std": 0.002,
+      "warning_relative_error": 0.25
+    }
+  },
+  "coordinates": {
+    "A": 0.05622031527389834,
+    "AB": 0.0004615267369534881,
+    "ABC": 0.7846530260221127,
+    "AC": 0.0016163157317204135,
+    "B": -6.287153390821532e-07,
+    "BC": 2.145175670816013e-05,
+    "C": 3.4355435457739114e-06
+  },
+  "environment": {
+    "device": "cpu",
+    "numpy": "1.26.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+    "torch": "2.13.0+cpu"
+  },
+  "gate": "XZZ",
+  "git": {
+    "branch": "feature/noise-robust-tripartite",
+    "commit": "f8acc37d4a16e57703511b0225a7e31a03e00658",
+    "dirty": true
+  },
+  "loss": 0.003717556700786135,
+  "manuscript_equation_exact": false,
+  "metrics": {
+    "corrected_fidelity": 0.9992918063175193,
+    "corrected_infidelity": 0.0007081936824806512,
+    "diagonality": 0.0007048014714007291,
+    "fluence": 0.06299379371655378,
+    "peak_penalty": 0.0,
+    "population_100_sum": 43.87259163878785,
+    "selected_phase": 1.5323692271145877e-06,
+    "smoothness": 0.004816435371988384,
+    "survival": 0.9999999998820945,
+    "survival_loss": 1.179054631705867e-10,
+    "unitarity": 1.3929418935328047e-20
+  },
+  "output_dir": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_smoke\\stage1_local_equivalence\\xzz",
+  "parameter_reconstruction_relative_error": 4.230378715653114e-17,
+  "peak_field_uT": 106.82639004953843,
+  "peak_fraction_of_bound": 0.5982277842774152,
+  "pulse_parameterization": "reference_residual_fourier",
+  "timestamp": "2026-07-20_13-26-54_UTC",
+  "warm_start": {
+    "checkpoint": "C:\\Users\\borab\\Desktop\\Desktop\\Projects\\FZ\\Interaction-resolved-decomposition-of-multi-qubit-unitaries-via-computational-basis-phases\\results_paper\\pulse_nondiagonal\\pulse_solution.pt",
+    "parameter_noise_seed": 104742,
+    "parameter_noise_std": 0.002,
+    "relative_waveform_error": 0.0,
+    "source": "reference_waveform_plus_fourier_residual"
+  }
+}

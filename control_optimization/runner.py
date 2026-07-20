@@ -23,7 +23,7 @@ from .pulse import (
     FourierPulseBounds,
     ReferenceResidualPulse,
 )
-from .trajectory import TrajectoryMetrics, propagate_with_electron_metrics
+from .trajectory import TrajectoryMetrics, propagate_with_population_100_sum
 
 
 def make_three_qubit_basis_indices(
@@ -131,14 +131,7 @@ class ControlOptimizer:
         self.delta_e = float(nv.detuning_for_target_all_up())
         self.omega_rf = torch.as_tensor(nv.ω1, device=self.device)
         dim_nuc = 3 * (2 ** int(self.pc["N_C"]))
-        self.electron_z = torch.kron(
-            torch.as_tensor(
-                nv.qz, dtype=self.complex_dtype, device=self.device
-            ),
-            torch.eye(
-                dim_nuc, dtype=self.complex_dtype, device=self.device
-            ),
-        )
+        self.full_dimension = 2 * dim_nuc
 
         self.basis_indices = make_three_qubit_basis_indices(
             self.pc,
@@ -197,19 +190,13 @@ class ControlOptimizer:
         time_grid: torch.Tensor,
         *,
         return_traces: bool = False,
-        sample_stride: int | None = None,
     ) -> TrajectoryMetrics:
-        return propagate_with_electron_metrics(
+        return propagate_with_population_100_sum(
             self._get_u,
             time_grid,
             controls,
             basis_indices=self.basis_indices,
-            electron_z=self.electron_z,
-            sample_stride=(
-                self.config.trajectory_sample_stride
-                if sample_stride is None
-                else sample_stride
-            ),
+            dimension=self.full_dimension,
             return_traces=return_traces,
         )
 
@@ -223,8 +210,7 @@ class ControlOptimizer:
             fluence=fluence,
             smoothness=smoothness,
             peak_penalty=self.pulse.peak_penalty(controls[0]),
-            electron_dephasing_exposure=trajectory.dephasing_exposure,
-            electron_manifold_excursion=trajectory.manifold_excursion,
+            population_100_sum=trajectory.population_100_sum,
         )
         return result, trajectory.propagator
 
@@ -648,7 +634,8 @@ class ControlOptimizer:
                 print(
                     f"Adam {step + 1:4d}/{cfg.steps}: "
                     f"loss={loss_value:.6e}, "
-                    f"F_corr={float(result.components['corrected_fidelity'].detach().cpu()):.8f}"
+                    f"F_corr={float(result.components['corrected_fidelity'].detach().cpu()):.8f}, "
+                    f"P100sum={float(result.components['population_100_sum'].detach().cpu()):.6f}"
                 )
         return best_parameter
 
@@ -688,7 +675,8 @@ class ControlOptimizer:
                 print(
                     f"LBFGS evaluation {closure_count:4d}: "
                     f"loss={loss_value:.6e}, "
-                    f"F_corr={float(result.components['corrected_fidelity'].detach().cpu()):.8f}"
+                    f"F_corr={float(result.components['corrected_fidelity'].detach().cpu()):.8f}, "
+                    f"P100sum={float(result.components['population_100_sum'].detach().cpu()):.6f}"
                 )
             return result.loss
 
@@ -727,6 +715,27 @@ class ControlOptimizer:
             )
         return {"loss": float(result.loss.detach().cpu()), "checks": checks}
 
+    def _apply_seeded_parameter_perturbation(self, raw: torch.Tensor) -> torch.Tensor:
+        std = float(self.config.warm_start.parameter_noise_std)
+        if std == 0.0:
+            return raw
+        generator = torch.Generator(device=self.device)
+        generator.manual_seed(self.config.seed + 104729)
+        noise = torch.randn(
+            raw.shape, dtype=raw.dtype, device=raw.device, generator=generator
+        )
+        perturbed = raw + std * noise
+        self.warm_start_info = {
+            **self.warm_start_info,
+            "parameter_noise_std": std,
+            "parameter_noise_seed": self.config.seed + 104729,
+        }
+        print(
+            "Applied seeded warm-start perturbation: "
+            f"std={std:g}, seed={self.config.seed + 104729}"
+        )
+        return perturbed
+
     def run(self) -> Path:
         random.seed(self.config.seed)
         np.random.seed(self.config.seed)
@@ -737,6 +746,7 @@ class ControlOptimizer:
             torch.use_deterministic_algorithms(True)
 
         raw = self._load_initial_raw()
+        raw = self._apply_seeded_parameter_perturbation(raw)
         print(f"Device: {self.device}")
         print(f"Logical basis indices: {self.basis_indices}")
         print(f"Initial checkpoint: {self.config.resume_from or 'seeded random'}")
@@ -769,7 +779,7 @@ class ControlOptimizer:
         target_gate = self.objective.frame.conj().T @ self.objective.target_frame @ self.objective.frame
         with torch.no_grad():
             trajectory = self._trajectory(
-                controls, time_grid, return_traces=True, sample_stride=1
+                controls, time_grid, return_traces=True
             )
             peak_field_uT = float(torch.amax(torch.abs(controls[0])).detach().cpu())
             peak_fraction = peak_field_uT / self.pulse.bounds.max_field_uT
@@ -785,16 +795,13 @@ class ControlOptimizer:
             )
         trajectory_payload = {
             "time_s": trajectory.times.detach().cpu(),
-            "electron_dephasing_exposure_trace": trajectory.exposure_trace.detach().cpu(),
-            "electron_manifold_excursion_trace": trajectory.excursion_trace.detach().cpu(),
-            "electron_manifold_excursion_min_trace": trajectory.excursion_min_trace.detach().cpu(),
-            "electron_manifold_excursion_max_trace": trajectory.excursion_max_trace.detach().cpu(),
-            "electron_dephasing_exposure_integral": float(
-                trajectory.dephasing_exposure.detach().cpu()
+            "population_100_trace": trajectory.population_100_trace.detach().cpu(),
+            "logical_survival_trace": trajectory.logical_survival_trace.detach().cpu(),
+            "population_100_sum": float(
+                trajectory.population_100_sum.detach().cpu()
             ),
-            "electron_manifold_excursion_integral": float(
-                trajectory.manifold_excursion.detach().cpu()
-            ),
+            "initial_logical_state": "000",
+            "target_logical_state": "100",
         }
         checkpoint = {
             "params": physical,
@@ -929,6 +936,7 @@ class ControlOptimizer:
 
         print(f"Saved optimized checkpoint to {output_dir}")
         print(f"Final corrected fidelity: {summary['metrics']['corrected_fidelity']:.10f}")
+        print(f"Final P100 sum: {summary['metrics']['population_100_sum']:.8f}")
         print(
             f"Final sampled peak: {peak_field_uT:.6f} uT "
             f"({peak_fraction:.6f} of bound)"
