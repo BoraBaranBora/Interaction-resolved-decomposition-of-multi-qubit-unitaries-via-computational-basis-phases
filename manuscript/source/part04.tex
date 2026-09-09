@@ -1,0 +1,90 @@
+
+\noindent
+We first demonstrate interaction-resolved quantum optimal control by synthesizing a diagonal three-qubit entangling gate. The target operation is
+\begin{equation}
+\label{eq:desired_u_diag}
+U_{\mathrm{target}} = e^{\,i\frac{\pi}{4} Z\!\otimes\!Z\!\otimes\!Z},
+\end{equation}
+which produces genuine tripartite entanglement and generates a GHZ state up to local phases~\cite{coffman2000distributed,dur2000three}.\\
+
+\noindent
+The system dynamics are described by the effective Hamiltonian in Eq.~\eqref{eq:H_NV_RWA_main}, and the microwave control fields are parameterized according to Eq.~\eqref{eq:pulse_parametrization_example}. We consider the logical subsystem of an electronic spin ($A$) coupled to two proximal $^{13}$C nuclear spins ($B$ and $C$), while the $^{14}$N nuclear spin is prepared in a fixed $m_I$ state and acts as a spectator. Within the logical $A\!\otimes\!B\!\otimes\!C$ subspace the optimization seeks to realize the target gate~\eqref{eq:desired_u_diag} using interaction-coordinate control objectives. We therefore consider the projected propagator $U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)$, corresponding to the restriction of the full propagator $U_{\mathrm{pulse}}(\mathbf p,T)$ defined in Eq.~\eqref{eq:U_pulse_definition} to the logical $A\!\otimes\!B\!\otimes\!C$ subspace.\\
+
+\noindent
+% Instead of targeting a fixed unitary matrix, the optimization objective is formulated directly in terms of the phase invariants introduced in Sec.~\ref{sec:control_objective_phase_invariants}.
+Since the target gate is already diagonal, no diagonalizing transformation is required and the projected propagator $U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)$ can directly be treated in the computational basis
+\begin{equation}
+U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)
+=
+\sum_{a,b,c\in\{0,1\}} e^{-i\phi_{abc}}\ket{abc}\bra{abc},
+\label{eq:Uzzzphase}
+\end{equation}
+from which the many-body interaction contribution strengths are extracted via the interaction coordinates $\phi(S)$ constructed from the phases $\phi_{abc}$. For a three-qubit system the interaction coordinates are
+\begin{equation}
+\begin{aligned}
+&\phi(\{a\}),\ \phi(\{b\}),\ \phi(\{c\}),\quad
+\phi(\{a,b\}),\ \phi(\{a,c\}),\ \phi(\{b,c\}),\\
+&\phi(\{a,b,c\}).
+\end{aligned}
+\end{equation}
+Explicit expressions of the interaction coordinates in terms of the computational-basis phases $\{\phi_{abc}\}_{a,b,c\in\{0,1\}}$ are given in Appendix~\ref{app:explicit_3q_invariants}. \noindent
+The control objective is defined by specifying the target interaction phases
+\begin{equation}
+\begin{aligned}
+&\phi^\star(\{a,b,c\}) = \tfrac{\pi}{4}, \\
+&\phi^\star(\{a,b\})
+=
+\phi^\star(\{a,c\})
+=
+\phi^\star(\{b,c\})
+= 0,
+\end{aligned}
+\label{eq:Uzzzinvariants}
+\end{equation}
+while leaving the single-qubit interaction coordinates unconstrained, as they correspond to locally correctable degrees of freedom. The optimization minimizes the $\pi$-periodic cost function $\mathcal{J}_{\mathrm{3q}}$ defined in Eq.~\eqref{eq:phase-invariant-cost}, with weights chosen based on relative importance and such that only nonlocal interactions ($|S|\ge2$) contribute: $w(\{{a,b,c}\})=0.5$, $w(|S|=2)=0.2$, $w(|S|=1)=0.0$. Additional regularization terms penalize leakage, non-unitarity, and rapid control variations.
+
+The resulting optimized microwave pulse is shown in Fig.~\ref{fig:nv_3q_pulse_ZZZ}. The pulse duration is $T=1500$~ns, and the parametrization consists of $N_c = 8$ frequency terms, as given in Eq.~\eqref{eq:pulse_parametrization}. The used parameters are provided in the public repository~\cite{baran2026_multiqubit_control} in the form of a parameter vector as in Eq.~\eqref{eq:pulse_parametrization_example}. It exhibits smooth amplitude and phase modulation while realizing the prescribed interaction structure with a single shaped pulse. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.47\textwidth]{Bilder/drives_concatenated_ZZZ.png}
+\caption{
+Optimized time-modulated Rabi-frequency $\Omega(t)$ implementing a three-body interaction phase $\phi(\{a,b,c\})\approx\pi/4$ (modulo $\pi$), while suppressing all pairwise interaction phases $\phi(\{a,b\})$, $\phi(\{a,c\})$, and $\phi(\{b,c\})$, obtained via interaction-resolved optimization.
+}
+\label{fig:nv_3q_pulse_ZZZ}
+\end{figure}
+
+To validate the interaction dynamics we evaluate the $k$-body phase decomposition throughout the evolution by tracking the time-dependent interaction coordinates $\phi_t(S)$. This reveals how the control pulse builds up the desired three-body interaction phase $\phi_t(\{a,b,c\})$ while guiding the pairwise phase components $\phi_t(\{a,b\})$, $\phi_t(\{a,c\})$, and $\phi_t(\{b,c\})$ to be suppressed towards phase equal to zero, up to the inherent $\pi$-periodicity~\eqref{eq:pi_peridicity}. As shown in Fig.~\ref{fig:nv_3q_invariants_vs_time_ZZZ}, the three-body coordinate $\phi_t(\{a,b,c\})$ builds up to the target value while the pairwise coordinates end up suppressed, up to the inherent $2\pi$-periodicity of the phase map. 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.49\textwidth]{Bilder/all_invariants_one_plot_ZZZ.png}
+\caption{
+Time evolution of the interaction coordinates $\phi_t(S)$ during the optimized pulse. The three-body coordinate $\phi_t(\{a,b,c\})$ (black curve) approaches $-3\pi/4$, which is equivalent to $\pi/4$ modulo $\pi$. Pairwise coordinates approach integer multiples of $\pi$, indicating vanishing two-body interaction contributions, given the $\pi$-periodicity~\eqref{eq:pi_peridicity}.
+}
+\label{fig:nv_3q_invariants_vs_time_ZZZ}
+\end{figure}
+\\
+
+\noindent
+Residual single-qubit phases can be removed via virtual $Z$ corrections determined from the one-body interaction coordinates,
+\begin{equation}
+U_{\mathrm{loc}}
+=
+\exp\!\Bigl(-i\sum_{j\in\{a,b,c\}}\phi(\{j\})\, Z_j\Bigr).
+\end{equation}
+The resulting operation
+\begin{equation}
+U_{\mathrm{final}} = U_{\mathrm{loc}}\,U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)
+\end{equation}
+achieves a fidelity
+\begin{equation}
+F_{\mathrm{ZZZ}}
+=
+\frac{\big|\mathrm{Tr}\!\left[
+(U_{\mathrm{target}})^{\dagger}U_{\mathrm{final}}
+\right]\big|^{2}}{8^{2}}
+= 0.9978 .
+\end{equation}
+
+\noindent
+This example illustrates how interaction-resolved coordinates can be used directly inside a quantum optimal control objective. By constraining the desired three-body coordinate and suppressing the pairwise coordinates, the prescribed many-body interaction structure can be synthesized while local terms remain available as free, correctable degrees of freedom. The resulting pulse realizes the target interaction structure within one control step, demonstrating how interaction-selective control objectives can be implemented in practice.
