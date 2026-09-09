@@ -1,0 +1,116 @@
+\section{Conclusion and Outlook}
+\label{sec:conclusion}
+
+\noindent
+We introduced interaction-resolved quantum optimal control, in which selected many-body interaction contributions are used directly as control coordinates. In a suitable diagonalizing frame, these coordinates are the coefficients of the Pauli-$Z$ expansion of the phase generator and are obtained from computational-basis phases by the Walsh-Hadamard transform. We use this standard representation to distinguish local, pairwise, tripartite, and general \(k\)-body contributions and to formulate objectives that constrain only the interaction supports relevant to the desired operation.\\
+
+\noindent
+We applied this scheme to a realistically parametrized NV-$^{14}$N-$^{13}$C-$^{13}$C spin register and presented two numerical quantum optimal control examples. First, we considered a diagonal three-qubit entangler, showing how interaction-coordinate control objectives directly specify and synthesize the desired many-body interaction structure of a unitary transformation. In this case the tripartite interaction $e^{i(\pi/4)Z\otimes Z\otimes Z}$ was synthesized using a single shaped microwave pulse with fidelity $F_{\mathrm{ZZZ}}=0.9978$. We then considered a non-diagonal three-qubit interaction of the form $e^{i(\pi/4)X\otimes Z\otimes Z}$, obtained by performing the optimization in a suitable diagonalizing frame. This second example demonstrates that the framework extends naturally to non-diagonal Pauli interactions: by transforming to a frame in which the relevant interaction becomes diagonal, the same interaction-resolved control objectives can be applied. The resulting operation was realized with fidelity $F_{\mathrm{XZZ}}=0.9985$. The gate durations, of $1.25\,\mu\mathrm{s}$ and $1.5\,\mu\mathrm{s}$, remain well below the coherence time~\cite{hanson2008coherent,naydenov2011dynamical,balasubramanian2009ultralong,maurer2012room,childress2006coherent,taminiau2014universal}. In both cases the prescribed interaction structure was synthesized through interaction-resolved control objectives while leaving local, easily correctable phases unconstrained. These results show that nontrivial higher-weight multi-qubit interactions can be synthesized by a single pulse. Many stabilizer measurements in quantum error correction are typically decomposed into sequences of two-qubit gates and ancilla-mediated operations~\cite{gottesman1997stabilizer,fowler2012surface,litinski2019game,taminiau2014universal}. Our results demonstrate that isolated tripartite entangling operations can be synthesized as single shaped pulses in the considered platform model, suggesting a route toward reduced circuit depth and potentially lower accumulated control errors. 
+
+\noindent
+Looking ahead, promising directions include experimental realization on multi-spin NV registers and related AMO platforms, as well as closed-loop interaction-resolved characterization and optimization based on the interaction coordinates. In this context, the underlying phase map can be reconstructed experimentally via conditional Ramsey interferometry, as described explicitly for the three-qubit case in Appendix~\ref{app:explicit_3q_phase_map_reconstruction}. These measurements provide direct access to relative phases between computational-basis states and could therefore serve as observables in a closed-loop control protocol, enabling interaction-resolved characterization and therefore optimization without requiring full process tomography. 
+
+% \medskip
+% \noindent
+% Looking ahead, promising directions include experimental realization on multi-spin NV registers and related AMO platforms, as well as closed-loop optimization directly based on phase invariants. In this context, the phase map underlying the invariants can in principle be reconstructed experimentally using conditional Ramsey interferometry, as described explicitly for the three-qubit case in Appendix~\ref{app:explicit_3q_phase_map_reconstruction}. These measurements provide direct access to relative phases between computational-basis states and could therefore serve as experimentally accessible observables in a closed-loop control protocol, enabling interaction-resolved optimization without requiring full process tomography. Further directions include robustness-aware pulse design under control noise and parameter drift.
+
+\bibliographystyle{unsrt}  
+\bibliography{references}
+
+
+\appendix
+
+
+
+\section*{Acknowledgements}
+\noindent
+The authors acknowledge fruitful discussions with Thomas Reisser, Marcus Doherty and Robert Zeier. This work was supported by the European Union’s HORIZON Europe program via project SPINUS (No. 101135699), project QCFD (101080085, HORIZON-CL4-2021 DIGITAL-EMERGING02-10), project OpenSuperQ-Plus100 (101113946, HORIZON-CL4-2022-QUANTUM-01-SGA), by AIDAS-AI, Data Analytics and Scalable Simulation, which is a Joint Virtual Laboratory gathering the Forschungszentrum Juelich and the French Alternative Energies and Atomic Energy Commission, and by Germany’s Excellence Strategy - the Cluster of Excellence Matter and Light for Quantum Computing (ML4Q2) EXC 2004/2–390534769.\\
+
+\noindent
+The authors declare no competing financial interest.
+
+
+\section*{Author Contributions}
+\noindent
+The project originated from discussions among all authors on how to formulate optimal control objectives that selectively target multi-qubit interaction terms without requiring full-unitary specification. B.B. formulated the interaction-resolved quantum optimal control scheme used in this work, based on Pauli-$Z$ interaction coordinates obtained from the computational-basis phase map, with input from M.M.M. and F.M.. M.M.M. and F.M. supervised the project. B.B. implemented the method numerically. T.C., M.M.M. and F.M. provided scientific guidance and critical analysis throughout its development. B.B. drafted the manuscript. All authors contributed to, reviewed and approved the final manuscript.
+
+% The project originated from discussions among all authors concerning the constructability of higher-order versions of local invariants. B.B. derived a higher-order generalization as support-selective phase invariants on the diagonal phase map and integrated it into control framework. M.M.M. and F.M. supervised the project. T.C., M.M.M. and F.M. provided scientific guidance and critical analysis throughout its development. B.B. drafted the manuscript and performed the numerical demonstration. All authors contributed to, reviewed and approved the final manuscript. 
+
+%The research direction was outlined through discussions between M.M.M. and B.B.. 
+%B.B. implemented the method numerically. B.B. conceived the central idea and developed the mathematical framework and proofs.
+% B.B. wrote the manuscript, T.C., M.M.M. and F.M. contributed by providing critical analysis and scientific guidance. All authors discussed the results and approved the final version of the manuscript. 
+
+\section*{Data Availability}
+\noindent
+The data and reproduction code is openly available on Zenodo and GitHub \cite{baran2026_multiqubit_control}.
+
+
+% \section{NV-register simulation parameters}
+% \label{app:nv_params}
+% \noindent
+% The NV electronic spin ($S{=}1$) couples to one intrinsic $^{14}$N nucleus and four proximate $^{13}$C spins through anisotropic hyperfine tensors $A_{zz}$ and $A_{\perp}$, with the external magnetic field $B_0$ defining the NV axis. The values in table \ref{tab:nv_params_table} correspond to typical experimental ranges reported in~\cite{Chen,nizovtsev}.\\
+% %\onecolumngrid
+% \begin{table}[H]
+% \centering
+% \caption{Physical parameters used for the NV-$^{14}$N-$^{13}$C$_1$-$^{13}$C$_2$ register simulation. Each column corresponds to one spin qubit included in the model.}
+% \label{tab:nv_params_table}
+% \begin{tabular}{lcccc}
+% \toprule
+% Parameter & NV Electron ($S{=}1$) & $^{14}$N ($I{=}1$) & $^{13}$C$_1$ ($I{=}\tfrac{1}{2}$) & $^{13}$C$_2$ ($I{=}\tfrac{1}{2}$) \\
+% \midrule
+% Gyrom. ratio $\gamma/2\pi$ (MHz/T) & 28{,}024 & 3.077 & 10.71 & 10.71 \\
+% $A_{zz}$ (MHz) & - & $-2.14$ & 2.281 & -1.011 \\
+% $A_{\perp}$ (MHz) & - & 0.00 & 0.240 & 0.014 \\
+% $Q$ (MHz) & - & $-5.01$ & 0.00 & 0.00 \\
+% Static field $B_0$ (T) & \multicolumn{4}{c}{0.45 (aligned with NV axis)} \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+% %\twocolumngrid
+
+
+
+\section{Full Derivation of the NV-Center Hamiltonian}
+\label{app:nv_model}
+
+This appendix details the derivation of the effective NV-center Hamiltonian given in Sec.\ref{sec:spin_model}, inspired by the perturbative analysis of Chen \emph{et al.}~\cite{Chen}.
+
+
+\paragraph{Laboratory Frame.}
+Throughout, Hamiltonian parameters are expressed in angular-frequency units. With a static magnetic field $B_0$ aligned to the NV axis and a linearly polarized microwave (MW) field $B_{1,\mathrm{MW}}(t)$ applied orthogonally, the coupled NV-nuclear system is described by
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{NV}}
+&= D\!\left(S_z^2-\tfrac{2}{3}\right)
++ \gamma_e B_0 S_z
++ \gamma_e B_{1,\mathrm{MW}}(t)\,S_x\\
+&\hspace{-0.7cm}+ \sum_i \vec{S}\!\cdot\! A_i \!\cdot\! \vec{I}_i 
+\quad - \sum_i \gamma_i B_0 I_{iz}
+\;+\; \sum_i Q_i\!\left(I_{iz}^2-\tfrac{2}{3}\right),
+\end{aligned}
+\label{eq:H_full}
+\end{equation}
+where $D/2\pi=2.87\,\mathrm{GHz}$ is the zero-field splitting, $\vec S$ ($S=1$) are the NV electronic spin operators, $\vec I_i$ are nuclear spins ($^{14}$N, selected $^{13}$C) with gyromagnetic ratios $\gamma_i$, $A_i$ are hyperfine tensors, and $Q_i$ are nuclear quadrupole terms.\\
+
+\paragraph{Two-level reduction and secular approximation.}
+We consider the effect of applying a strong magnetic field $B_0$. Together with the zero-field splitting $D$, a strong magnetic field lifts the degeneracy of the $m_s\pm1$ electronic levels and isolates the $\{\ket{0_e},\ket{-1_e}\}$ transition from the remaining electronic level $\ket{+1_e}$, enough for it to be neglected (valid for $B_0\gtrsim 0.5\,$T). The electronic spin can thereby be treated as an effective two-level transition between $\{\ket{0_e},\ket{-1_e}\}$, with transition frequency
+\[
+\Lambda_s = D - \gamma_e B_0.
+\]
+With that, we write the electronic Hamiltonian as
+\begin{equation}
+H_e = \frac{\Lambda_s}{2}\,\sigma_z \;+\; \gamma_e B_{1,\mathrm{MW}}(t)\,\frac{\sigma_x}{\sqrt{2}}.
+\label{eq:He_def}
+\end{equation}
+
+Given that the electronic splitting $\Lambda_s$ is much larger than the hyperfine couplings $A_i$, the terms in the hyperfine interaction \(\sum_i \vec S\cdot A_i\cdot \vec I_i\) that are non-diagonal in the electronic basis, average out on relevant timescales. This motivates a so-called secular-approximation: only the electron-diagonal components of the hyperfine interaction are retained, so that
+\[
+\sum_i \vec S\cdot A_i\cdot \vec I_i \longrightarrow
+S_z\left(A_{i,zz}I_{iz}+
+A_{i,zx}I_{ix}+
+A_{i,zy}I_{iy}\right)
+\]
+Further, we have to consider that in the $\ket{-1_e}$-manifold, the projected hyperfine interaction contributes to the nuclear dynamics with negative sign, giving
+\begin{equation}
+\begin{aligned}
+H_{-1} &= -\sum_i \gamma_i B_0 I_{iz} \;+\; \sum_i Q_i\!\left(I_{iz}^2-\tfrac{2}{3}\right)\\
