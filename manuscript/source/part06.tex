@@ -1,18 +1,26 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\noindent
+The central purpose of the interaction-resolved formulation is to separate the different roles played by interaction terms inside a control objective. Rather than fixing the complete target unitary, the optimization can prescribe selected many-body coordinates, suppress unwanted interaction supports, and leave irrelevant or easily correctable degrees of freedom unconstrained. In the three-qubit examples considered here, the desired tripartite coordinate is fixed, all pairwise coordinates are suppressed, and the one-body coordinates are left free and corrected separately. The Pauli/Walsh interaction coordinates therefore serve not as a new decomposition of unitary operations, but as a practical coordinate system in which the physically relevant structure of the control target can be stated directly.
+
+\noindent
+The NV-center case study shows that this selective formulation can be used to synthesize isolated higher-body interactions in a realistic spin-register model. For the diagonal target, a single shaped microwave pulse realizes the tripartite interaction $e^{i(\pi/4)Z\otimes Z\otimes Z}$ with fidelity $F_{\mathrm{ZZZ}}=0.9978$. For the non-diagonal target, the same construction is applied in a local Hadamard frame and yields $e^{i(\pi/4)X\otimes Z\otimes Z}$ with fidelity $F_{\mathrm{XZZ}}=0.9985$. The corresponding pulse durations, $1.5\,\mu\mathrm{s}$ and $1.25\,\mu\mathrm{s}$, remain well below reported coherence times for NV-center spin registers~\cite{hanson2008coherent,naydenov2011dynamical,balasubramanian2009ultralong,maurer2012room,childress2006coherent,taminiau2014universal}. Together, the two examples show that the control construction is not tied to a canonically diagonal interaction, provided that the relevant Pauli-string generator can be brought into the diagonal frame by a known local transformation.
+
+\noindent
+Direct higher-body synthesis may be useful when the corresponding logical operation would otherwise be decomposed into sequences of lower-body gates. In stabilizer-based quantum error correction, for example, many parity operations are conventionally implemented through sequences of two-qubit gates and ancilla-mediated constructions~\cite{gottesman1997stabilizer,fowler2012surface,litinski2019game,taminiau2014universal}. The present results do not establish a circuit-level error advantage, but they show that isolated tripartite entangling interactions can be realized as single shaped pulses in the considered platform model, suggesting a route toward reduced circuit depth when direct higher-body control is available.
+
+\noindent
+The scope of the present study is deliberately narrower than a general controllability statement. The numerical demonstration concerns a three-qubit NV-center register and two Pauli-string targets, and it does not establish scaling to arbitrary register size or arbitrary multi-qubit unitaries. The natural domain of the present formulation is instead given by interaction structures that are diagonal, or can be made diagonal in a known local frame, for which the support-resolved Pauli coordinates can be used directly as control variables.
+
 \section{Conclusion and Outlook}
 \label{sec:conclusion}
 
 \noindent
-We introduced interaction-resolved quantum optimal control, in which selected many-body interaction contributions are used directly as control coordinates. In a suitable diagonalizing frame, these coordinates are the coefficients of the Pauli-$Z$ expansion of the phase generator and are obtained from computational-basis phases by the Walsh-Hadamard transform. We use this standard representation to distinguish local, pairwise, tripartite, and general \(k\)-body contributions and to formulate objectives that constrain only the interaction supports relevant to the desired operation.\\
+We introduced interaction-resolved quantum optimal control, in which standard Pauli/Walsh interaction coordinates are used to formulate objectives that selectively constrain many-body interaction contributions. Applied to a realistically parametrized NV-center spin register, this formulation enabled the single-pulse synthesis of isolated $ZZZ$ and $XZZ$ tripartite interactions while leaving local degrees of freedom unconstrained and correcting them separately.
 
 \noindent
-We applied this scheme to a realistically parametrized NV-$^{14}$N-$^{13}$C-$^{13}$C spin register and presented two numerical quantum optimal control examples. First, we considered a diagonal three-qubit entangler, showing how interaction-coordinate control objectives directly specify and synthesize the desired many-body interaction structure of a unitary transformation. In this case the tripartite interaction $e^{i(\pi/4)Z\otimes Z\otimes Z}$ was synthesized using a single shaped microwave pulse with fidelity $F_{\mathrm{ZZZ}}=0.9978$. We then considered a non-diagonal three-qubit interaction of the form $e^{i(\pi/4)X\otimes Z\otimes Z}$, obtained by performing the optimization in a suitable diagonalizing frame. This second example demonstrates that the framework extends naturally to non-diagonal Pauli interactions: by transforming to a frame in which the relevant interaction becomes diagonal, the same interaction-resolved control objectives can be applied. The resulting operation was realized with fidelity $F_{\mathrm{XZZ}}=0.9985$. The gate durations, of $1.25\,\mu\mathrm{s}$ and $1.5\,\mu\mathrm{s}$, remain well below the coherence time~\cite{hanson2008coherent,naydenov2011dynamical,balasubramanian2009ultralong,maurer2012room,childress2006coherent,taminiau2014universal}. In both cases the prescribed interaction structure was synthesized through interaction-resolved control objectives while leaving local, easily correctable phases unconstrained. These results show that nontrivial higher-weight multi-qubit interactions can be synthesized by a single pulse. Many stabilizer measurements in quantum error correction are typically decomposed into sequences of two-qubit gates and ancilla-mediated operations~\cite{gottesman1997stabilizer,fowler2012surface,litinski2019game,taminiau2014universal}. Our results demonstrate that isolated tripartite entangling operations can be synthesized as single shaped pulses in the considered platform model, suggesting a route toward reduced circuit depth and potentially lower accumulated control errors. 
-
-\noindent
-Looking ahead, promising directions include experimental realization on multi-spin NV registers and related AMO platforms, as well as closed-loop interaction-resolved characterization and optimization based on the interaction coordinates. In this context, the underlying phase map can be reconstructed experimentally via conditional Ramsey interferometry, as described explicitly for the three-qubit case in Appendix~\ref{app:explicit_3q_phase_map_reconstruction}. These measurements provide direct access to relative phases between computational-basis states and could therefore serve as observables in a closed-loop control protocol, enabling interaction-resolved characterization and therefore optimization without requiring full process tomography. 
-
-% \medskip
-% \noindent
-% Looking ahead, promising directions include experimental realization on multi-spin NV registers and related AMO platforms, as well as closed-loop optimization directly based on phase invariants. In this context, the phase map underlying the invariants can in principle be reconstructed experimentally using conditional Ramsey interferometry, as described explicitly for the three-qubit case in Appendix~\ref{app:explicit_3q_phase_map_reconstruction}. These measurements provide direct access to relative phases between computational-basis states and could therefore serve as experimentally accessible observables in a closed-loop control protocol, enabling interaction-resolved optimization without requiring full process tomography. Further directions include robustness-aware pulse design under control noise and parameter drift.
+A natural next step is experimental implementation and closed-loop interaction-resolved optimization. The computational-basis phase map underlying the interaction coordinates can, in principle, be reconstructed from conditional Ramsey measurements, as described explicitly for the three-qubit case in Appendix~\ref{app:explicit_3q_phase_map_reconstruction}. Such measurements could provide experimentally accessible observables for interaction-resolved characterization and optimization without requiring full process tomography. Further directions include extending the approach to larger spin registers and related platforms, as well as robustness-aware pulse design under control noise and parameter drift.
 
 \bibliographystyle{unsrt}  
 \bibliography{references}
@@ -32,9 +40,9 @@ The authors declare no competing financial interest.
 
 \section*{Author Contributions}
 \noindent
-The project originated from discussions among all authors on how to formulate optimal control objectives that selectively target multi-qubit interaction terms without requiring full-unitary specification. B.B. formulated the interaction-resolved quantum optimal control scheme used in this work, based on Pauli-$Z$ interaction coordinates obtained from the computational-basis phase map, with input from M.M.M. and F.M.. M.M.M. and F.M. supervised the project. B.B. implemented the method numerically. T.C., M.M.M. and F.M. provided scientific guidance and critical analysis throughout its development. B.B. drafted the manuscript. All authors contributed to, reviewed and approved the final manuscript.
+The project originated from discussions among all authors on how to formulate optimal control objectives that selectively target multi-qubit interaction terms without requiring full-unitary specification. B.B. formulated the interaction-resolved quantum optimal control scheme used in this work, employing Pauli/Walsh interaction coordinates extracted from computational-basis phases, with input from M.M.M. and F.M.. M.M.M. and F.M. supervised the project. B.B. implemented the method numerically. T.C., M.M.M. and F.M. provided scientific guidance and critical analysis throughout its development. B.B. drafted the manuscript. All authors contributed to, reviewed and approved the final manuscript.
 
-% The project originated from discussions among all authors concerning the constructability of higher-order versions of local invariants. B.B. derived a higher-order generalization as support-selective phase invariants on the diagonal phase map and integrated it into control framework. M.M.M. and F.M. supervised the project. T.C., M.M.M. and F.M. provided scientific guidance and critical analysis throughout its development. B.B. drafted the manuscript and performed the numerical demonstration. All authors contributed to, reviewed and approved the final manuscript. 
+% The project originated from discussions among all authors concerning the constructability of higher-order versions of local invariants. B.B. derived a higher-order generalization as interaction coordinates on the diagonal phase map and integrated it into control framework. M.M.M. and F.M. supervised the project. T.C., M.M.M. and F.M. provided scientific guidance and critical analysis throughout its development. B.B. drafted the manuscript and performed the numerical demonstration. All authors contributed to, reviewed and approved the final manuscript. 
 
 %The research direction was outlined through discussions between M.M.M. and B.B.. 
 %B.B. implemented the method numerically. B.B. conceived the central idea and developed the mathematical framework and proofs.
@@ -114,3 +122,870 @@ Further, we have to consider that in the $\ket{-1_e}$-manifold, the projected hy
 \begin{equation}
 \begin{aligned}
 H_{-1} &= -\sum_i \gamma_i B_0 I_{iz} \;+\; \sum_i Q_i\!\left(I_{iz}^2-\tfrac{2}{3}\right)\\
+&\hspace{0.43cm}\;-\; \sum_i \big(A_{i,zz} I_{iz}+A_{i,zx} I_{ix}+A_{i,zy} I_{iy}\big) \label{eq:H-1_def}
+\end{aligned}
+\end{equation}
+By contrast, in the $\ket{0_e}$-manifold the projected $S_z$ contribution vanishes, since $S_z\ket{0_e}=0$, so that the nuclei evolve only under their Zeeman $\gamma_i B_0 I_{iz}$ and quadrupolar terms $Q_i\!\left(I_{iz}^2-\tfrac{2}{3}\right)$,
+\begin{equation}
+\begin{aligned}
+H_{0} &= -\sum_i \gamma_i B_0 I_{iz} \;+\; \sum_i Q_i\!\left(I_{iz}^2-\tfrac{2}{3}\right)
+\label{eq:H0_def}
+\end{aligned}
+\end{equation}
+Recombining the secular electronic Hamiltonian with the two conditional nuclear Hamiltonians yields the block form
+\begin{equation}
+H_{\mathrm{NV}}
+= H_e
++ \ket{0_e}\!\bra{0_e}\otimes H_{0}
++ \ket{-1_e}\!\bra{-1_e}\otimes H_{-1}.
+\label{eq:block_form}
+\end{equation}
+
+\paragraph{Diagonalizing the Nuclear Basis.}
+We want to diagonalize the $H_{-1}$ Hamiltonian because it contains off-diagonal terms with respect to the electronic quantization axis, in contrast to the $H_{0}$ Hamiltonian.
+In the $H_{-1}$ Hamiltonian, the transverse hyperfine components tilt the effective nuclear field away from the NV axis. For nucleus $i$, the combined secular hyperfine and nuclear Zeeman contributions in the $H_{-1}$ Hamiltonian can be grouped as
+\begin{equation}
+    H^{(i)}_{-1,\mathrm{hf}} = (A_{i,zz}+\gamma_iB_0)I_{iz}
+    +A_{i,zx}I_{ix}
+    ++A_{i,zy}I_{iy}
+    \label{eq:Hminus_hf}
+\end{equation}
+which, by itself, can be geometrically interpreted as an interaction of the nuclear spin with an effective static field
+\[
+\vec b_i = 
+\begin{pmatrix}
+A_{i,zx}\\
+A_{i,zy}\\
+A_{i,zz}+\gamma_iB_0\\
+\end{pmatrix}
+\]
+whose orientation corresponds to the current quantization axis in the $H_{-1}$ Hamiltonian.
+
+
+In order to ultimately rotate the basis of $H_{-1}$, we parameterize the orientation of $\vec b_i$ by spherical angles $\theta_i,\phi_i$ \cite{schweiger2001principles},
+\begin{equation}
+\tan\phi_i = \frac{A_{i,zy}}{A_{i,zx}},
+\qquad
+\tan\theta_i = \frac{\sqrt{A_{i,zx}^2+A_{i,zy}^2}}
+{A_{i,zz}+\gamma_iB_0},
+\label{eq:angles}
+\end{equation}
+and define its magnitude
+\begin{equation}
+\omega_i = |\vec b_i| =
+\sqrt{ (A_{i,zz}+\gamma_iB_0)^2
++ A_{i,zx}^2
++ A_{i,zy}^2 }.
+\label{eq:omega_i}
+\end{equation}
+
+Based on these spherical angles, we introduce a rotated nuclear basis $(x'_i,y'_i,z'_i)$ whose quantization axis $z'_i$ is aligned with $\vec b_i$. The $I_{iz}$ operator in this rotated basis basis becomes 
+\begin{equation}
+    I'_{iz} = I_{ix}\sin\theta_i\cos\phi_i 
+    + I_{iy}\sin\theta_i\sin\phi_i 
+    + I_{iz}\cos\theta_i.
+    \label{eq:Izprime}
+\end{equation}
+With this choice, the transverse contribution in the $H_{-1}$ Hamiltonian become diagonal:
+\[
+H^{(i)}_{-1,\mathrm{hf}}= \vec b_i\cdot\vec I_i = \omega_i I'_{iz}.
+\]
+
+The $H_{-1}$ Hamiltonian therefore takes the form
+\begin{align}
+H_{-1}
+&=
+-\sum_i\omega_i I'_{iz}
++
+\sum_iQ_i\!\left(I_{iz}'^{\,2}-\tfrac23\right).
+\label{eq:H-1_rot}
+\end{align}
+
+Thus, after rotating the nuclear basis, the quantization axes associated with the $H_{-1}$ Hamiltonian are collected onto the effective hyperfine axis of each nucleus, rendering the Hamiltonian diagonal in the rotated basis.\\
+
+\paragraph{Electronic transitions between nuclear quantization frames.}
+
+While the $H_0$ Hamiltonian remains quantized along the NV axis, the $H_{-1}$ Hamiltonian is now quantized along the effective hyperfine axis defined by $\vec b_i$. The two nuclear Hamiltonians therefore have a relative tilt between their quantization frames.
+
+The rotated operator \(I'_{iz}\) implicitly defines a nuclear rotation
+\(R_i\) satisfying
+\[
+I'_{iz}=R_i I_{iz} R_i^\dagger.
+\]
+Since the effective field \(\vec b_i\) is parameterized by the spherical angles \((\theta_i,\phi_i)\), this rotation is generated by
+\[
+R_i
+=
+\exp\!\left[
+-i\theta_i
+\left(
+-I_{ix}\sin\phi_i
++
+I_{iy}\cos\phi_i
+\right)
+\right],
+\]
+with collective rotation
+\[
+R=\prod_iR_i.
+\]
+
+For the weakly misaligned nuclei considered here,  \(\theta_i\ll1\), the rotation may be expanded to first order,
+\[
+R
+\simeq
+1-iG,
+\]
+where
+\[
+G
+=
+\sum_i\theta_i
+\left(
+-I_{ix}\sin\phi_i
++
+I_{iy}\cos\phi_i
+\right).
+\]
+
+Rather than rewriting both nuclear Hamiltonians in a common operator basis, we absorb this relative nuclear rotation into the electronic transition operators. Defining the electronic raising and lowering operators as
+\[
+\sigma_+
+=
+\ket{0_e}\!\bra{-1_e},
+\qquad
+\sigma_-
+=
+\ket{-1_e}\!\bra{0_e},
+\]
+the microwave interaction
+\[
+H_{\mathrm{MW}}
+=
+\frac{\gamma_eB_{1,\mathrm{MW}}(t)}{\sqrt2}
+(\sigma_+ + \sigma_-)
+\]
+therefore becomes
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{MW}}
+&=
+\frac{\gamma_eB_{1,\mathrm{MW}}(t)}{\sqrt2}
+\left(
+\sigma_+\otimes R^\dagger
++
+\sigma_-\otimes R
+\right)
+\\
+&\approx
+\frac{\gamma_eB_{1,\mathrm{MW}}(t)}{\sqrt2}
+\left[
+\sigma_x
+-
+\sigma_y G
+\right].
+\end{aligned}
+\label{eq:HMW_rot}
+\end{equation}
+The first term describes the bare electronic microwave transition, while the second term is a first-order electron-nuclear modulation arising from the mismatch between the nuclear quantization frames of the two electronic manifolds.\\
+
+
+
+\paragraph{Interaction picture.}
+
+The next step of the derivation is a transformation to the interaction picture that removes the free precession dynamics and leaves only the control-induced dynamics explicit. We therefore decompose the Hamiltonian as
+\begin{equation}
+H_{\mathrm{NV}}
+=
+H_{\mathrm{free}}
++
+H_{\mathrm{MW}},
+\label{eq:H_split}
+\end{equation}
+where the free evolution is generated by the diagonal electronic and nuclear
+terms,
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{free}}
+&=
+\frac{\Lambda_s}{2}\sigma_z
+\\
+&\quad
++
+\ket{0_e}\!\bra{0_e}\otimes
+\left[
+-\sum_i\gamma_iB_0 I_{iz}
++
+\sum_iQ_i\!\left(I_{iz}^{\,2}-\tfrac23\right)
+\right]
+\\
+&\quad
++
+\ket{-1_e}\!\bra{-1_e}\otimes
+\left[
+-\sum_i\omega_i I'_{iz}
++
+\sum_iQ_i\!\left(I_{iz}'^{\,2}-\tfrac23\right)
+\right],
+\end{aligned}
+\label{eq:H_free}
+\end{equation}
+while the microwave interaction is
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{MW}}
+&\approx
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\left[
+\sigma_x
+-
+\sigma_y G
+\right]\,.
+\end{aligned}
+\label{eq:HMW_rot}
+\end{equation}
+
+
+We choose \(H_{\mathrm{free}}\) as the generator of the interaction picture, such that
+\begin{equation}
+H_{\mathrm{NV}}^{(I)}(t)
+=
+e^{iH_{\mathrm{free}}t}
+H_{\mathrm{MW}}
+e^{-iH_{\mathrm{free}}t}.
+\label{eq:IP_transform}
+\end{equation}
+
+We first transform the bare electronic part of the microwave interaction,
+\[
+H_{\mathrm{MW},x}
+=
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}\sigma_x .
+\]
+Its interaction-picture form is
+\begin{equation}
+H_{\mathrm{MW},x}^{(I)}(t)
+=
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+e^{iH_{\mathrm{free}}t}
+\sigma_x
+e^{-iH_{\mathrm{free}}t}.
+\label{eq:HMWx_IP_start}
+\end{equation}
+
+Since \(H_{\mathrm{free}}\) is diagonal in the electronic basis and in the natural nuclear basis of each manifold, its propagator acts only through energy-dependent phase accumulation,
+\[
+e^{iH_{\mathrm{free}}t}
+=
+\sum_{e,\mathbf m}
+e^{iE_e(\mathbf m)t}
+\ket{e,\mathbf m}\!\bra{e,\mathbf m}.
+\]
+Using \(\sigma_x=\sigma_++\sigma_-\), the interaction picture evolution of the electronic transition operator is therefore governed by the energy difference between the connected free eigenstates,
+\begin{equation}
+\begin{aligned}
+&e^{iH_{\mathrm{free}}t}
+\sigma_x
+e^{-iH_{\mathrm{free}}t}
+\notag\\
+&=
+\sum_{\mathbf m}
+\Big[
+\sigma_+
+e^{i[E_0(\mathbf m)-E_{-1}(\mathbf m)+\Lambda_s]t}
+\\
+&\hspace{1.5cm}
++
+\sigma_-
+e^{-i[E_0(\mathbf m)-E_{-1}(\mathbf m)+\Lambda_s]t}
+\Big]
+\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+\label{eq:sigmax_IP_phase}
+\end{equation}
+Defining the configuration-dependent transition frequency
+\begin{equation}
+\begin{aligned}
+\Lambda(\mathbf m)
+&:=
+\Lambda_s
++
+E_0(\mathbf m)
+-
+E_{-1}(\mathbf m)
+\\
+&=
+\Lambda_s
++
+\left[
+-\sum_i\gamma_iB_0m_i
++
+\sum_iQ_i\!\left(m_i^2-\tfrac23\right)
+\right]
+\\
+&\quad
+-
+\left[
+-\sum_i\omega_i m_i
++
+\sum_iQ_i\!\left(m_i^2-\tfrac23\right)
+\right]
+\\
+&=
+\Lambda_s
+-
+\sum_i m_i(\gamma_iB_0-\omega_i).
+\end{aligned}
+\label{eq:Lambda_config_general}
+\end{equation}
+this becomes
+\begin{equation}
+\begin{aligned}
+&e^{iH_{\mathrm{free}}t}
+\sigma_x
+e^{-iH_{\mathrm{free}}t}
+\notag\\
+&=
+\sum_{\mathbf m}
+\left[
+\sigma_+ e^{i\Lambda(\mathbf m)t}
++
+\sigma_- e^{-i\Lambda(\mathbf m)t}
+\right]
+\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}
+\\
+&=
+\sum_{\mathbf m}
+\big[
+\sigma_x\cos(\Lambda(\mathbf m)t)
+-
+\sigma_y\sin(\Lambda(\mathbf m)t)
+\big]
+\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+\label{eq:sigmax_IP_step}
+\end{equation}
+
+
+
+Consequently, the bare electronic part of the microwave interaction becomes
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{MW}}^{(I)}(t)
+&=
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\sum_{\mathbf m}
+\big[
+\sigma_x\cos(\Lambda(\mathbf m)t)
+-
+\sigma_y\sin(\Lambda(\mathbf m)t)
+\big]
+\\
+&\hspace{1cm}\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+\label{eq:HMW_I}
+\end{equation}
+Here, the nuclear configuration is preserved to leading order during the bare
+microwave-driven electronic transition.\\
+
+%
+
+
+
+We now transform the second term in the dressed microwave interaction,
+\[
+H_{\mathrm{MW},eN}
+=
+-\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\sigma_y\otimes G .
+\]
+Its interaction-picture form is
+\begin{equation}
+H_{\mathrm{MW},eN}^{(I)}(t)
+=
+-\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+e^{iH_{\mathrm{free}}t}
+\left(
+\sigma_y\otimes G
+\right)
+e^{-iH_{\mathrm{free}}t}.
+\label{eq:HeN_IP_start}
+\end{equation}
+
+Since the electron-nuclear modulation term contributes only at first order in the small misalignment angles $\theta_i$, we employ a leading-order description of its interaction-picture evolution. For the electronic part, we retain the dominant bare precession at $\Lambda_s$ rather than the full configuration-dependent transition frequency $\Lambda(\mathbf m)$. For the nuclear part, we approximate the manifold-dependent precession by the effective mean generator
+\[
+H_N
+=
+-\sum_i \delta_i I_{iz},
+\,\, \text{with}\,\,
+\delta_i
+=
+\frac{\gamma_iB_0+\omega_i}{2}.
+\]
+This captures the leading averaged dynamics of the weak modulation without
+tracking the full configuration-resolved evolution.
+
+For the same reason, we also approximate the transformation as
+\begin{equation}
+\begin{aligned}
+&e^{iH_{\mathrm{free}}t}
+\left(
+\sigma_y\otimes G
+\right)
+e^{-iH_{\mathrm{free}}t}
+\notag\\
+&\approx
+\left(
+e^{i\Lambda_s\sigma_z t/2}
+\sigma_y
+e^{-i\Lambda_s\sigma_z t/2}
+\right)
+\otimes
+\left(
+e^{iH_N t}
+G
+e^{-iH_N t}
+\right).
+\end{aligned}
+\label{eq:sigmayG_factorized}
+\end{equation}
+
+The electronic part evaluates to
+\[
+e^{i\Lambda_s\sigma_z t/2}
+\sigma_y
+e^{-i\Lambda_s\sigma_z t/2}
+=
+\sigma_x\sin(\Lambda_s t)
++
+\sigma_y\cos(\Lambda_s t),
+\]
+while the nuclear operator
+\[
+G
+=
+\sum_i\theta_i
+\left(
+-I_{ix}\sin\phi_i
++
+I_{iy}\cos\phi_i
+\right)
+\]
+evolves under \(H_N\) as
+\[
+e^{iH_N t}
+G
+e^{-iH_N t}
+=
+\sum_i\theta_i
+\left[
+I_{ix}\cos(\delta_i t-\phi_i)
++
+I_{iy}\sin(\delta_i t-\phi_i)
+\right].
+\]
+
+Therefore, to leading order,
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{MW},eN}^{(I)}(t)
+&\approx
+-\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\big[
+\sigma_x\sin(\Lambda_s t)
++
+\sigma_y\cos(\Lambda_s t)
+\big]
+\\
+&\quad\otimes
+\sum_i\theta_i
+\big[
+I_{ix}\cos(\delta_i t-\phi_i)
++
+I_{iy}\sin(\delta_i t-\phi_i)
+\big].
+\end{aligned}
+\label{eq:HeN_I}
+\end{equation}
+
+
+\paragraph{Rotating-wave approximation (RWA).}
+We drive the electron at microwave frequency $\omega_{\mathrm{MW}}$ with a magnetic field
+\begin{equation}
+B_{1,\mathrm{MW}}(t)
+=
+\frac{\sqrt2\,\Omega(t)}{\gamma_e}
+\cos(\omega_{\mathrm{MW}} t),
+\end{equation}
+where $\Omega(t)$ denotes the effective time-dependent Rabi-frequency envelope. 
+Substituting this field into Eq.~\eqref{eq:HMW_I} gives the prefactor
+\[
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+=
+\Omega(t)\cos(\omega_{\mathrm{MW}} t).
+\]
+Using the product-to-sum identity $\cos\alpha\cos\beta=\tfrac12[\cos(\alpha-\beta)+\cos(\alpha+\beta)]$
+and $\cos\alpha\sin\beta=\tfrac12[\sin(\beta+\alpha)+\sin(\beta-\alpha)]$,
+the electron interaction-picture drive
+\(
+\propto \sigma_x\cos[\Lambda(\mathbf m)t]-\sigma_y\sin[\Lambda(\mathbf m)t]
+\)
+splits into a slow (difference-frequency) piece and explicit counter-rotating (sum-frequency) pieces:
+\begin{align}
+&\notag\hspace{-0.0cm}H_{e}^{(\mathrm{full})}(t)= \frac{\Omega(t)}{2}\sum_{\mathbf m}\\
+&\hspace{-0.2cm}
+\Big\{\underbrace{\big[\sigma_x\cos((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)-\sigma_y\sin((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)\big]}_{\text{slow (near-resonant)}}\nonumber\\
+&\hspace{-0.2cm}
++\notag \underbrace{\big[\sigma_x\cos\big((\omega_{\mathrm{MW}}+\Lambda(\mathbf m))t\big)- 
+\hspace{0.2cm} \sigma_y\sin\big((\omega_{\mathrm{MW}}+\Lambda(\mathbf m))t\big)\big]}_{\text{fast (counter-rotating)}}\Big\}\\
+&\otimes \ket{\mathbf m}\!\bra{\mathbf m}.
+\label{eq:He_full_split}
+\end{align}
+The \emph{rotating-wave approximation} (RWA) keeps only the slow terms and discards the counter-rotating term at  $(\omega_{\mathrm{MW}}+\Lambda(\mathbf m))t\big)$, yielding
+\begin{equation}
+\boxed{
+\begin{aligned}
+&H_{e}^{(\mathrm{RWA})}(t)
+= \frac{\Omega(t)}{2} \sum_{\mathbf m}
+\big[\sigma_x\cos((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)\\ & \hspace{1.9cm}-\sigma_y\sin((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)\big]
+\otimes \ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+}
+\label{eq:HeRWA_time_nophase_Lambda_m}
+\end{equation}
+Applying the same procedure to the electron–nuclear modulation term Eq.~\eqref{eq:HeN_I}, gives
+\begin{align}
+&\notag H_{eN}^{(\mathrm{full})}(t)\\
+&\notag=
+\underbrace{-\,\frac{\Omega(t)}{2}\,
+\big[\sigma_x\sin((\omega_{\mathrm{MW}}-\Lambda_s) t)+\sigma_y\cos((\omega_{\mathrm{MW}}-\Lambda_s) t)\big]}_{\text{slow (near-resonant in the electron sector)}}\;\\
+&\notag\;\otimes\;
+\sum_i \theta_i\big[I'_{ix}\cos(\delta_i t-\phi_i)+I'_{iy}\sin(\delta_i t-\phi_i)\big]\\
+&\notag\hspace{-0.0cm}\quad
+\underbrace{-\,\frac{\Omega(t)}{2}\,
+\big[\sigma_x\sin\big((\Lambda_s+\omega_{\mathrm{MW}})t\big)
+      +\sigma_y\cos\big((\Lambda_s+\omega_{\mathrm{MW}})t\big)\big]}_{\text{fast (counter-rotating)}}\\
+&\;\otimes\;
+\sum_i \theta_i\big[I'_{ix}\cos(\delta_i t-\phi_i)+I'_{iy}\sin(\delta_i t-\phi_i)\big].
+\label{eq:HeN_full_split}
+\end{align}
+Discarding the fast rotating term again, gives 
+\begin{equation}
+\boxed{
+\begin{aligned}
+&H_{eN}^{(\mathrm{RWA})}(t)\\
+&\notag=-\,\frac{\Omega(t)}{2}\,
+\big[\sigma_x\sin((\omega_{\mathrm{MW}}-\Lambda_s) t)+\sigma_y\cos((\omega_{\mathrm{MW}}-\Lambda_s) t)\big]\\
+&\;\otimes\;
+\sum_i \theta_i\big[I'_{ix}\cos(\delta_i t-\phi_i)+I'_{iy}\sin(\delta_i t-\phi_i)\big].
+\end{aligned}
+}
+\label{eq:HeN_RWA_time_nophase_final}
+\end{equation}
+
+\section{NV-register simulation parameters}
+\label{app:nv_params}
+\noindent
+The NV electronic spin ($S{=}1$), with gyromagnetic ratio 
+$\gamma_e/2\pi = 28.024~\text{GHz/T}$, couples to one intrinsic 
+$^{14}$N nucleus and two proximate $^{13}$C spins through anisotropic 
+hyperfine tensors $A_{zz}$ and $A_{\perp}$, with an external magnetic 
+field $B_0 = 0.45~\text{T}$ aligned with the NV axis. 
+The nuclear-spin parameters listed in Table~\ref{tab:nv_params_table} 
+correspond to typical experimental ranges reported in 
+Refs.~\cite{Chen,nizovtsev}.\\
+\begin{table}[t]
+\centering
+\caption{Physical parameters used for the nuclear spins in the 
+NV-$^{14}$N-$^{13}$C$_1$-$^{13}$C$_2$ register simulation.}
+\label{tab:nv_params_table}
+\begin{tabular}{lccc}
+\toprule
+Parameter & $^{14}$N ($I{=}1$) & $^{13}$C$_1$ ($I{=}\tfrac{1}{2}$) & $^{13}$C$_2$ ($I{=}\tfrac{1}{2}$) \\
+\midrule
+$\gamma/2\pi$ (MHz/T) & 3.077 & 10.71 & 10.71 \\
+$A_{zz}/2\pi$ (MHz)                     & $-2.14$ & 2.281 & $-1.011$ \\
+$A_{\perp}/2\pi$ (MHz)                  & 0.00 & 0.240 & 0.014 \\
+$Q/2\pi$ (MHz)                          & $-5.01$ & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Explicit Three-Qubit Interaction Coordinates}
+\label{app:explicit_3q_invariants}
+
+\noindent
+For three qubits, the interaction coordinates can be evaluated directly from the diagonal phase values $\{\phi_{abc}\}_{a,b,c\in\{0,1\}}$ using the parity form of Eq.~\eqref{eq:phase_coefficients_parity_sum}. Writing $\vec{x}=(a,b,c)$, this yields
+\begin{equation}
+\label{eq:phiS_3q_general}
+\phi(S)
+=
+\frac{1}{8}
+\sum_{a,b,c\in\{0,1\}}
+(-1)^{\sum_{i\in S} x_i}\,\phi_{abc},
+\end{equation}
+where $\phi_{abc} \equiv \phi(a,b,c)$ denotes the phase acquired by the computational-basis state $\ket{abc}$.
+
+\medskip
+\noindent
+That is, each interaction coordinate is obtained as a parity-weighted sum over the measured phase values, where the sign for each computational-basis state is determined by the parity of the bits indexed by $S$. We list the explicit expressions for all nontrivial subsets below.
+
+\medskip
+\noindent\textbf{Three-body interaction coordinate $\phi(\{a,b,c\})$.}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a,b,c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
+-\phi_{010}
++\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
++\phi_{101}
++\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\medskip
+\noindent\textbf{Two-body interaction coordinates.}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a,b\})
+&= \frac{1}{8}\Big(
+\phi_{000}
++\phi_{001}
+-\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
+-\phi_{101}
++\phi_{110}
++\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a,c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
++\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
++\phi_{101}
+-\phi_{110}
++\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{b,c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
+-\phi_{010}
++\phi_{011} \\
+&\qquad\quad
++\phi_{100}
+-\phi_{101}
+-\phi_{110}
++\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\medskip
+\noindent\textbf{Single-qubit interaction coordinates.}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a\})
+&= \frac{1}{8}\Big(
+\phi_{000}
++\phi_{001}
++\phi_{010}
++\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
+-\phi_{101}
+-\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{b\})
+&= \frac{1}{8}\Big(
+\phi_{000}
++\phi_{001}
+-\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
++\phi_{100}
++\phi_{101}
+-\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
++\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
++\phi_{100}
+-\phi_{101}
++\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+
+\section{Explicit Three-Qubit Reconstruction of the Phase Map}
+\label{app:explicit_3q_phase_map_reconstruction}
+
+\noindent
+The diagonal representation introduced in the main text shows that the unitary $U_{\mathrm{diag}}$ is fully characterized by the phases $\phi(\vec{x})$ acquired by computational-basis states. Since global
+phase is not observable, the phases $\phi(\vec{x})$ cannot be measured directly. Instead, experiments provide access to relative phases between computational-basis states, which can be obtained using conditional
+Ramsey interferometry \cite{ramsey1950molecular, childress2006coherent, balasubramanian2009ultralong, taminiau2014universal}.
+
+\medskip
+\noindent
+To measure such phase differences, one qubit $p$ is used as a probe while the remaining qubits are prepared in a fixed computational-basis configuration
+\[
+\ket{s}=\ket{x_1\dots x_{p-1}x_{p+1}\dots x_n}.
+\]
+The probe qubit is initialized in the superposition
+\[
+\ket{+}_p=\frac{\ket{0}_p+\ket{1}_p}{\sqrt2},
+\]
+yielding the joint state
+\[
+\frac{1}{\sqrt2}\bigl(\ket{0,s}+\ket{1,s}\bigr).
+\]
+
+\medskip
+\noindent
+After evolution under $U_{\mathrm{diag}}$, the two components accumulate different phases,
+\[
+\frac{1}{\sqrt2}
+\left(
+e^{i\phi(0,s)}\ket{0,s}
++
+e^{i\phi(1,s)}\ket{1,s}
+\right).
+\]
+Ramsey interferometry therefore measures the relative phase
+\begin{equation}
+\Theta_p(s)=\phi(1,s)-\phi(0,s),
+\label{eq:ramsey_phase}
+\end{equation}
+which corresponds to the phase difference between computational-basis states that differ only in qubit $p$.
+
+\medskip
+\noindent
+For a three-qubit subsystem with computational-basis phases
+\[
+\{\phi_{abc}\}_{a,b,c\in\{0,1\}},
+\qquad
+\phi_{abc}\equiv \phi(a,b,c),
+\]
+the conditional Ramsey measurements determine relative phases along the edges of the three-dimensional Boolean hypercube of computational-basis states.
+
+\medskip
+\noindent
+Choosing qubit $a$ as probe yields
+\begin{align}
+\Theta_a(0,0) &= \phi_{100}-\phi_{000}, \\
+\Theta_a(0,1) &= \phi_{101}-\phi_{001}, \\
+\Theta_a(1,0) &= \phi_{110}-\phi_{010}, \\
+\Theta_a(1,1) &= \phi_{111}-\phi_{011}.
+\end{align}
+
+\noindent
+Choosing qubit $b$ as probe gives
+\begin{align}
+\Theta_b(0,0) &= \phi_{010}-\phi_{000}, \\
+\Theta_b(0,1) &= \phi_{011}-\phi_{001}, \\
+\Theta_b(1,0) &= \phi_{110}-\phi_{100}, \\
+\Theta_b(1,1) &= \phi_{111}-\phi_{101}.
+\end{align}
+
+\noindent
+Choosing qubit $c$ as probe gives
+\begin{align}
+\Theta_c(0,0) &= \phi_{001}-\phi_{000}, \\
+\Theta_c(0,1) &= \phi_{011}-\phi_{010}, \\
+\Theta_c(1,0) &= \phi_{101}-\phi_{100}, \\
+\Theta_c(1,1) &= \phi_{111}-\phi_{110}.
+\end{align}
+
+\medskip
+\noindent
+These twelve measurements provide linear constraints on the eight unknown phases $\phi_{abc}$. Since the phase map is defined only up to a global phase, we fix the reference
+\[
+\phi_{000}=0.
+\]
+The remaining phases can then be reconstructed by solving the resulting linear system. One convenient reconstruction is
+\begin{align}
+\phi_{100} &= \Theta_a(0,0), \\
+\phi_{010} &= \Theta_b(0,0), \\
+\phi_{001} &= \Theta_c(0,0), \\
+\phi_{110} &= \phi_{010}+\Theta_a(1,0), \\
+\phi_{101} &= \phi_{001}+\Theta_a(0,1), \\
+\phi_{011} &= \phi_{001}+\Theta_b(0,1), \\
+\phi_{111} &= \phi_{011}+\Theta_a(1,1).
+\end{align}
+
+\noindent
+Equivalently, the final phase can be reconstructed along different paths on the hypercube, for example
+\begin{equation}
+\phi_{111}=\phi_{110}+\Theta_c(1,1)=\phi_{101}+\Theta_b(1,1),
+\end{equation}
+which is consistent provided the measured phase differences satisfy the
+hypercube compatibility relations.
+
+\medskip
+\noindent
+In practice, all twelve measurements may be combined in a least-squares reconstruction, providing redundancy against experimental noise.
+
+\medskip
+\noindent
+Once the phase map is reconstructed, the interaction coordinates follow from the parity-weighted sums introduced in the main text and listed explicitly for the three-qubit
+case in Appendix~\ref{app:explicit_3q_invariants}.
+
+\end{document}
