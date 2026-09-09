@@ -1,0 +1,200 @@
+Given a unitary $U_{\mathrm{diag}}$ expressed in a diagonalizing frame, such as in Eq.~\eqref{eq:diag_unitary}, we show that any Pauli-$Z$ interaction strength $\theta_S$ can be can recovered by linear combinations of phases acquired by computational-basis states under the application of $U_{\mathrm{diag}}$. \\
+
+\noindent
+Since $U_{\mathrm{diag}}$ is diagonal in the computational basis, its action on basis states
+$\ket{\vec{x}}$, with $\vec{x}\in\{0,1\}^n$, is
+\begin{equation}
+U_{\mathrm{diag}}\ket{\vec{x}}
+=
+e^{-i\phi(\vec{x})}\ket{\vec{x}},
+\end{equation}
+where $\phi(\vec{x})$ denotes the phase acquired by the basis state $\ket{\vec{x}}$. The full unitary can therefore be written as
+\begin{equation}
+U_{\mathrm{diag}}
+=
+\sum_{\vec{x}\in\{0,1\}^n}
+e^{-i\phi(\vec{x})}
+\ket{\vec{x}}\bra{\vec{x}},
+\label{eq:diag_unitary_comp_phases}
+\end{equation}
+so that we write its generator in terms of computational-basis phases, 
+\begin{equation}
+\Phi
+=
+\sum_{\vec{x}\in\{0,1\}^n} \phi(\vec{x})\,|\vec{x}\rangle\langle\vec{x}|,
+\quad \text{with} \quad
+U_{\mathrm{diag}} = e^{i\Phi}.
+\label{eq:phi_generator}
+\end{equation}
+Since $\Phi$ is diagonal in the computational basis, it admits a natural expansion in the diagonal Pauli-$Z$ operator basis
+\(Z_S = \prod_{i\in S} Z_i,\,\text{with}\, S \subseteq \{1,\dots,n\}, \)
+so that it can also be written as a unique combination of $Z_S$ terms
+\begin{equation}
+\Phi
+=
+\sum_{S\subseteq\{1,\dots,n\}}
+\phi(S)\, Z_S ,
+\label{eq:phase_pauli_expansion}
+\end{equation}
+where $\phi(S)$ are linear combinations of the coefficients $\phi(\vec{x})$ in Eq.\eqref{eq:phi_generator}. \\
+Since Eqs.~\eqref{eq:diag_generator} and \eqref{eq:phase_pauli_expansion} provide two equivalent representations of the same diagonal generator in the Pauli-$Z$ basis, the corresponding expansion coefficients must coincide,
+\begin{equation}
+\phi(S)=\theta_S.
+\label{eq:phi_theta_equivalence}
+\end{equation}
+The explicit form of the coefficients follows from projection onto the Pauli-$Z$ basis using the trace inner product,
+\begin{equation}
+\phi(S)
+=
+2^{-n}\mathrm{Tr}(\Phi Z_S)
+=
+2^{-n}
+\sum_{\vec{x}\in\{0,1\}^n}
+\langle\vec{x}|\Phi Z_S|\vec{x}\rangle.
+\label{eq:phase_invariant}
+\end{equation}
+Since computational-basis states are eigenstates of Pauli-$Z$ strings,
+\begin{equation}
+Z_S|\vec{x}\rangle
+=
+(-1)^{\sum_{i\in S}x_i}|\vec{x}\rangle,
+\end{equation}
+the coefficients reduce to
+\begin{equation}
+\phi(S)
+=
+2^{-n}
+\sum_{\vec{x}\in\{0,1\}^n}
+(-1)^{\sum_{i\in S}x_i}
+\langle\vec{x}|\Phi|\vec{x}\rangle.
+\end{equation}
+Using
+\(
+\langle\vec{x}|\Phi|\vec{x}\rangle=\phi(\vec{x}),
+\)
+we obtain
+\begin{equation}
+\phi(S)
+=
+2^{-n}
+\sum_{\vec{x}\in\{0,1\}^n}
+(-1)^{\sum_{i\in S}x_i}
+\phi(\vec{x}).
+\label{eq:phase_coefficients_parity_sum}
+\end{equation}
+
+\medskip
+\noindent
+Thus the coefficients $\theta_S$ can be uniquely obtained as parity-weighted sums of computational-basis phases. As this returns a specific many-body interaction contribution strength $\theta_S$ by combining phases, while canceling other contributions due to basis-orthogonality, we refer to the construction $\phi(S)$ in Eq.~\eqref{eq:phase_coefficients_parity_sum} as \emph{support-selective phase invariants}.
+
+\medskip
+\noindent
+\textbf{Remark.}
+The coefficients $\phi(S)$ coincide mathematically with the Walsh-Hadamard transform of the computational-basis phases on the Boolean hypercube $\{0,1\}^n$~\cite{welch2014efficient}; here they emerge from projecting the unitary generator onto the Pauli-$Z$ operator basis.\\
+
+\noindent
+The phase invariants $\phi(S)$~\eqref{eq:phase_coefficients_parity_sum} provide an interaction-resolved coordinate system for unitaries in a diagonalizing frame, as they decompose any diagonalized unitary into $k$-body contributions. The diagonal unitary can therefore be written as
+\begin{equation}
+U_{\mathrm{diag}}
+=
+\exp\!\left(-
+i\sum_{S\subseteq\{1,\dots,n\}}
+\phi(S)\, Z_S
+\right),
+\label{eq:phi_expansion_u_diag}
+\end{equation}
+where the coefficients $\phi(S)$ specify the many-body contribution strength supported on the subset $S$.
+
+
+\subsection{Equivalence Classes}
+\label{sec:interaction_equivalence_classes}
+
+\noindent
+Since the support-selective phase invariants $\phi(S)$ provide an interaction-resolved coordinate system for unitaries through Eq.~\eqref{eq:phi_expansion_u_diag}, they naturally induce equivalence relations by specifying which interaction coordinates are required to coincide.
+
+For a fixed support subset $S$, two unitaries $U$ and $V$, represented in diagonalized form, are said to be $S$-interaction equivalent if they possess the same coordinate along the interaction direction $Z_S$:
+\begin{equation}
+\phi_U(S)
+=
+\phi_V(S)
+\quad \mathrm{mod}\; 2\pi.
+\end{equation}
+
+More generally, for a chosen collection of supports
+\[
+\mathcal{A}\subseteq 2^{\{1,\dots,n\}},
+\]
+we define the interaction-equivalence relation
+\begin{equation}
+U \sim_{\mathcal{A}} V
+\quad\Longleftrightarrow\quad
+\phi_U(S)=\phi_V(S)
+\; \mathrm{mod}\; 2\pi,
+\qquad
+\forall S\in\mathcal{A}.
+\end{equation}
+
+
+Thus, each selected set of supports $\mathcal{A}$ determines a corresponding equivalence class on \(U(2^n)\) via the interaction-coordinate space: unitaries belonging to the same equivalence class agree on the specified many-body interaction coordinates while remaining free to differ along coordinates associated with subsets outside $\mathcal{A}$.
+
+In particular, choosing
+\[
+\mathcal{A}_{\geq2}
+=
+\left\{
+S\subseteq\{1,\dots,n\}
+:\ |S|\geq2
+\right\}
+\]
+fixes all nonlocal interaction coordinates while allowing arbitrary one-body coordinates. This recovers an analogue of local equivalence within the interaction-resolved decomposition: local phases may vary, but the nonlocal interaction-coordinate structure is preserved.\\
+
+\noindent
+Conversely, selecting a single support $S$ defines a more flexible equivalence class containing all unitaries sharing the same $S$-body interaction coordinate, independent of all remaining coordinates.\\
+
+\noindent
+These equivalence classes are useful for quantum control because they allow objectives to be formulated at different levels of interaction resolution within the same coordinate framework. Rather than matching a full target unitary, one may require only membership in a prescribed interaction-equivalence class, for example by constraining selected interaction coordinates $\phi(S)$ while leaving local or otherwise irrelevant coordinates unconstrained.
+
+% \medskip
+% \noindent
+
+
+\section{Interaction-resolved Quantum Optimal Control}
+\label{sec:results}
+
+\noindent
+\noindent
+To demonstrate the practical utility of the interaction-resolved decomposition we apply it to formulate interaction-resolved control objectives based on support selective phase invariants, we apply the approach on a representative and realistic platform, a solid-state spin register based on a nitrogen-vacancy (NV) center in diamond. For a given control pulse, the system is evolved under the effective Hamiltonian to obtain the propagator, from which computational-basis phases are extracted in the corresponding diagonalizing frame and combined into interaction-resolving support-selective phase invariants used as optimization targets.
+
+
+\medskip
+\noindent
+We present two illustrative examples. In both, we consider a three-qubit entangler, demonstrating how how phase-invariant control objectives selectively guide the desired interaction structure of a unitary operation to synthesize a prescribed many-body interaction structure. We then synthesize a non-diagonal three-qubit entangler by performing the optimization in a suitable diagonalizing frame, demonstrating that the same framework extends naturally to unitaries generated by non-diagonal Pauli strings.
+
+\subsection{Control Objectives in Interaction-Resolved Coordinates}
+\label{sec:control_objective_phase_invariants}
+
+\noindent
+Target unitary operations can be specified by assigning desired values $\{\phi_S^\star\}$ to support-selective phase invariants associated with desired many-body interaction terms, so that the desired structure is prescribed for the unitary gate as given in Eq.~\eqref{eq:phi_expansion_u_diag}.
+
+% \medskip
+% \noindent
+% The decomposition involves interaction contributions supported on all subsets $S \subseteq \{1,\dots,n\}$ and thus comprises $2^n$ independent coefficients, reflecting the full parameter count of a general $n$-qubit unitary in the diagonal frame up to a global phase. In many relevant settings, however, only a restricted set of $k$-body interaction terms determines the desired operation. In such cases, the relevant parameter space is reduced to a subset of support-selective phase invariants associated with the corresponding interaction structure. Specifying a target operation therefore amounts to fixing a set of invariants $\{\phi_S^\star\}$ associated with selected subsets $S \subseteq \{1,\ldots,n\}$ corresponding to $k$-body contributions on certain qubits.\\
+
+\noindent
+To quantify deviations from desired many-body interaction contributions, a distance measure can be defined on the support-selective phase invariants, circumventing the need to use a global distance measure.\\
+Given target values for a chosen set of qubit subsets  $\mathcal{S}_{\mathrm{target}}$, we define the interaction-resolved control cost function
+\begin{equation}
+\label{eq:phase-invariant-cost}
+\mathcal{J}
+=
+\sum_{S\in\mathcal{S}_{\mathrm{target}}}
+w_S
+\Bigl[
+1-\cos\!\bigl(2(\phi(S)-\phi_S^\star)\bigr)
+\Bigr],
+\end{equation}
+where $w_S$ determines the relative importance of the corresponding interaction terms. 
+Furthermore, this formulation also enables interaction-selective optimization: only the interaction contributions associated with subsets in $\mathcal{S}_{\mathrm{target}}$ enter the objective function. For example, leaving degrees of freedom, such as local terms, unconstrained, enlarges the space of admissible solutions, allowing the optimization to exploit this flexibility to find more efficient implementations.
+
+\medskip
+\noindent
