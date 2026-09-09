@@ -4,36 +4,37 @@ Working title:
 
 **Interaction-Resolved Quantum Optimal Control: Single-Pulse Synthesis of Isolated Tripartite Interactions in an NV-Center Spin Register**
 
-## Core editorial change
+## Editing policy
 
-The revised paper should no longer present the Walsh/Pauli projection of diagonal computational-basis phases as a new class of “phase invariants.” The parity-weighted coefficients are standard Walsh-Hadamard / Pauli-Z expansion coordinates. Their role in this paper is as **interaction-resolved control coordinates** used to formulate support-selective quantum-optimal-control objectives.
+The existing manuscript is already the basis of the revised paper. The refurbishment should remain **surgical**: preserve the section order, equations, NV Hamiltonian, pulse parametrization, numerical results, figures, and appendices, and change only wording where the present claim hierarchy or terminology is misleading.
 
-## Revised claim hierarchy
+## Core conceptual distinction
 
-1. Direct synthesis of an isolated higher-body interaction is a selective quantum-control problem: the desired tripartite term should be generated while unwanted pairwise terms are suppressed, whereas local terms may be left free and corrected separately.
-2. In a diagonalizing local frame, computational-basis phases can be projected onto the Pauli-Z basis (equivalently Walsh transformed) to obtain interaction coordinates indexed by their qubit support.
-3. These coordinates give a simple interaction-resolved QOC objective that fixes the desired support sectors and leaves irrelevant sectors unconstrained.
-4. The method is demonstrated as a realistic NV-center spin-register case study, synthesizing isolated ZZZ and XZZ tripartite interactions in single shaped microwave pulses.
+The paper introduces **interaction-resolved quantum optimal control as a control scheme**. It does **not** claim to introduce the Walsh-Hadamard coordinates themselves.
+
+In a diagonalizing frame, the computational-basis phase generator is projected onto the Pauli-$Z$ basis. The resulting coefficients are equivalently the Walsh-Hadamard transform of the phase map. We use these standard coefficients as **interaction coordinates** inside a QOC objective so that desired interaction supports can be targeted, unwanted supports suppressed, and irrelevant/local coordinates left unconstrained.
+
+## Claim hierarchy
+
+1. Interaction-resolved QOC is the methodological contribution.
+2. Pauli/Walsh interaction coordinates are the mathematical representation used by the scheme, not a newly introduced invariant construction.
+3. The same formulation is applied directly to a realistically parametrized NV-center spin register.
+4. The physical case study demonstrates single-pulse isolated tripartite $ZZZ$ and $XZZ$ interactions with the numerical results already reported in the manuscript.
 
 ## Terminology
 
-Prefer **interaction coordinates**, **Pauli interaction coordinates**, or **support-resolved interaction phases** after the initial definition.
+Prefer **interaction coordinates** or **interaction-resolved coordinates** after the initial definition.
 
-Avoid presenting “support-selective phase invariants” as a new mathematical object. Avoid unnecessary equivalence-class formalism unless it is needed directly for the control objective.
+Do not present “support-selective phase invariants” as a new mathematical object. Internal LaTeX labels may retain their old names where changing them would add unnecessary churn.
 
-## Structural target
+## Scope of changes
 
-1. Introduction
-2. Interaction-resolved quantum optimal control
-   - Interaction coordinates in a diagonalizing frame
-   - Support-selective control objective
-3. NV-center spin-register model
-   - System Hamiltonian
-   - Pulse parametrization
-4. Single-pulse synthesis of isolated tripartite interactions
-   - ZZZ
-   - XZZ
-5. Discussion and conclusion
-6. Appendices
+- title;
+- abstract framing;
+- Introduction claim language;
+- prose surrounding the Pauli/Walsh projection;
+- QOC/result captions and discussion terminology;
+- conclusion and author-contribution wording;
+- small grammar fixes directly encountered in those passages.
 
-The general mathematical construction should support the NV result rather than dominate the paper. The realistic NV application and the isolated tripartite single-pulse result are the central deliverables.
+No wholesale restructuring or new technical claims are intended.
