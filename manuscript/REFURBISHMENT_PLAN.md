@@ -6,7 +6,7 @@ Working title:
 
 ## Editing policy
 
-The existing manuscript is already the basis of the revised paper. The refurbishment should remain **surgical**: preserve the section order, equations, NV Hamiltonian, pulse parametrization, numerical results, figures, and appendices, and change only wording where the present claim hierarchy or terminology is misleading.
+The existing manuscript is already the basis of the revised paper. The refurbishment should remain **surgical**: preserve the equations, NV Hamiltonian, pulse parametrization, numerical results, figures, appendices, and technical content, and change wording where the present claim hierarchy or terminology is misleading. The only structural consolidation is to make the two main body sections mirror the two parts of the title.
 
 ## Core conceptual distinction
 
@@ -21,6 +21,22 @@ In a diagonalizing frame, the computational-basis phase generator is projected o
 3. The same formulation is applied directly to a realistically parametrized NV-center spin register.
 4. The physical case study demonstrates single-pulse isolated tripartite $ZZZ$ and $XZZ$ interactions with the numerical results already reported in the manuscript.
 
+## Main-text structure
+
+1. Introduction
+2. **Interaction-Resolved Quantum Optimal Control**
+   - computational-basis representation;
+   - interaction coordinates from the Pauli/Walsh projection;
+   - interaction-resolved control objective;
+   - equivalence-class interpretation.
+3. **Single-Pulse Synthesis of Isolated Tripartite Interactions in an NV-Center Spin Register**
+   - model spin Hamiltonian;
+   - pulse parametrization and optimization;
+   - diagonal $ZZZ$ target;
+   - non-diagonal $XZZ$ target.
+4. Conclusion and Outlook
+5. Appendices
+
 ## Terminology
 
 Prefer **interaction coordinates** or **interaction-resolved coordinates** after the initial definition.
@@ -33,8 +49,10 @@ Do not present “support-selective phase invariants” as a new mathematical ob
 - abstract framing;
 - Introduction claim language;
 - prose surrounding the Pauli/Walsh projection;
+- placement of the control-objective subsection within the first main section;
+- top-level section titles matching the two parts of the paper title;
 - QOC/result captions and discussion terminology;
 - conclusion and author-contribution wording;
 - small grammar fixes directly encountered in those passages.
 
-No wholesale restructuring or new technical claims are intended.
+No new technical claims are intended.
