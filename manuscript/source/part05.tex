@@ -1,0 +1,134 @@
+
+\subsection{Non-diagonal Three-Qubit Entangler}
+\label{sec:results_nv_xzz}
+
+\noindent
+We now apply the interaction-resolved control framework of Sec.~\ref{sec:control_objective_phase_invariants} to synthesize a non-diagonal three-qubit entangling gate by performing the optimization in a diagonalizing frame. The target operation is
+\begin{equation}
+\label{eq:desired_u_nondiag}
+U_{\mathrm{target}} = e^{\,i\frac{\pi}{4}X\!\otimes\!Z\!\otimes\!Z},
+\end{equation}
+which also generates a GHZ state up to local phases and thus produces genuine tripartite entanglement~\cite{coffman2000distributed,dur2000three}. This target gate is not naturally diagonal and therefore provides an explicit example of the scheme for a non-diagonal Pauli-string interaction. \\
+
+% \medskip
+% \noindent
+% As before, we simulate a solid-state register consisting of an NV electronic spin ($A$) coupled to two proximal $^{13}$C nuclear spins ($B$, $C$), with the $^{14}$N nuclear spin fixed in a spectator $m_I$ manifold. The system dynamics are described by the effective
+% Hamiltonian in Eq.~\eqref{eq:H_NV_RWA_main}, and the microwave control fields are parameterized according to Eq.~\eqref{eq:pulse_parametrization_example}. Within the logical
+% $A\!\otimes\!B\!\otimes\!C$ subspace, we therefore consider the projected propagator $U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)$, corresponding to the restriction of the full propagator $U_{\mathrm{pulse}}(\mathbf p,T)$ defined in Eq.~\eqref{eq:U_pulse_definition} to the logical $A\!\otimes\!B\!\otimes\!C$ subspace. The optimization then seeks a diagonal operation in the Hadamard frame whose interaction content consists of a finite three-body phase and vanishing pairwise couplings.
+
+\noindent
+As before, we simulate a solid-state register consisting of an NV electronic spin ($A$) coupled to two proximal $^{13}$C nuclear spins ($B$, $C$), with the $^{14}$N nuclear spin fixed in a spectator $m_I$ manifold. The system dynamics are described by the effective Hamiltonian in Eq.~\eqref{eq:H_NV_RWA_main}, and the microwave control fields are parameterized according to Eq.~\eqref{eq:pulse_parametrization_example}. We therefore again consider the projected propagator $U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)$, corresponding to the restriction of the full propagator $U_{\mathrm{pulse}}(\mathbf p,T)$ defined in Eq.~\eqref{eq:U_pulse_definition} to the logical $A\!\otimes\!B\!\otimes\!C$ subspace.\\
+
+
+\noindent
+The interaction coordinates for this target gate are constructed in the \emph{Hadamard-sandwiched frame},
+\begin{equation}
+\label{eq:frame_transformation}
+\begin{aligned}
+U_{\mathrm{diag}} &= (H_A\!\otimes\!I_B\!\otimes\!I_C)\,
+U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)\,
+(H_A\!\otimes\!I_B\!\otimes\!I_C) \\
+\end{aligned}
+\end{equation}
+where the target unitary is diagonal and the propagator can therefore be analyzed directly through its computational-basis phases and corresponding interaction coordinates, as given in Secs.~\ref{sec:interaction_resolved_representation}–\ref{sec:control_objective_phase_invariants}. After optimization, the Hadamard gates can be removed such that the same physical pulse implements the desired non-diagonal action.
+
+
+\medskip
+\noindent
+In the Hadamard-sandwiched frame~\eqref{eq:frame_transformation}, the optimization proceeds as for the previous target gate, using the interaction coordinates introduced in Sec.~\ref{sec:interaction_resolved_representation}. The control objective specifies the target interaction phases
+\begin{equation}
+\begin{aligned}
+&\phi^\star(\{a,b,c\}) = \tfrac{\pi}{4}, \\
+&\phi^\star(\{a,b\})
+=
+\phi^\star(\{a,c\})
+=
+\phi^\star(\{b,c\})
+= 0,
+\end{aligned}
+\label{eq:Uxzzinvariants}
+\end{equation}
+with the optimization minimizing the $\pi$-periodic cost function $\mathcal{J}_{\mathrm{3q}}$ defined in Eq.~\eqref{eq:phase-invariant-cost}, while the weights are chosen as $w(\{{a,b,c}\})=0.5$, $w(|S|=2)=0.2$, and $w(|S|=1)=0.0$. Explicit formulas for the interaction coordinates in terms of the computational-basis phase values $\{\phi_x\}_{x\in\{0,1\}^3}$ are given in Appendix~\ref{app:explicit_3q_invariants}. Using these interaction coordinates, we optimize a control pulse toward the same prescribed many-body interaction structure as for the diagonal target, expressed now in the Hadamard-sandwiched frame of Eq.~\eqref{eq:frame_transformation}.
+
+
+
+\medskip
+\noindent
+After optimization, we return to the computational basis by discarding the Hadamard gates in Eq.~\eqref{eq:frame_transformation}, such that the effective action of the pulse is
+\begin{equation}
+U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T)
+\;\approx\;
+e^{i\frac{\pi}{4}X\!\otimes\!Z\!\otimes\!Z}
+\end{equation}
+up to local transformations.
+
+\medskip
+\noindent
+The optimized microwave envelope (Fig.~\ref{fig:nv_3q_pulse_xzz}) exhibits smooth amplitude and phase modulation over $T=1250$~ns, and consists of $N_c = 11$ frequency terms, as given in Eq.~\eqref{eq:pulse_parametrization}. The used parameters are provided in the public repository~\cite{baran2026_multiqubit_control} in the form of a parameter vector as in Eq.~\eqref{eq:pulse_parametrization_example}. It realizes the control objective in the diagonalizing (Hadamard) frame as a single shaped pulse. After the removal of the diagonalizing transformations, the same physical pulse implements the target non-diagonal entangler in the computational basis.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.47\textwidth]{Bilder/drives_concatenated_XZZ.png}
+\caption{
+Optimized time-modulated Rabi-frequency $\Omega(t)$ implementing the non-diagonal three-qubit entangler $e^{i(\pi/4)X\!\otimes\!Z\!\otimes\!Z}$ in the computational basis, synthesized via interaction-resolved optimization in the diagonalizing (Hadamard) frame.
+}
+\label{fig:nv_3q_pulse_xzz}
+\end{figure}
+
+\noindent
+Next we validate the interaction dynamics by tracking the time evolution of the interaction coordinates $\phi_t(S)$ for all nonempty subsets $S\subseteq\{a,b,c\}$. This reveals that the control pulse builds up the desired three-body interaction phase $\phi_t(\{a,b,c\})$ in the diagonalizing frame while guiding the pairwise phase components $\phi_t(\{a,b\})$, $\phi_t(\{a,c\})$, and $\phi_t(\{b,c\})$ to be suppressed toward zero, up to the inherent $2\pi$-periodicity~\eqref{eq:pi_peridicity}. Figure~\ref{fig:nv_3q_invariants_vs_time_xzz} shows the resulting interaction-coordinate trajectories.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.49\textwidth]{Bilder/all_invariants_one_plot_XZZ.png}
+\caption{
+Time evolution of the interaction coordinates $\phi_t(S)$ extracted from the phase map in the diagonalizing (Hadamard-sandwiched) frame during the optimized non-diagonal gate pulse. As in the canonically diagonal case, in Fig.~\ref{fig:nv_3q_invariants_vs_time_ZZZ}, the three-body interaction coordinate $\phi_t(\{a,b,c\})$ (thick black line) converges to $\pi/4$, realizing the desired three-body interaction. The two-body interaction coordinates $\phi_t(\{a,b\})$, $\phi_t(\{a,c\})$, and $\phi_t(\{b,c\})$ directly go to zero in this case, corresponding to vanishing pairwise interaction content.
+}
+\label{fig:nv_3q_invariants_vs_time_xzz}
+\end{figure}
+
+\medskip
+\noindent
+Residual local phases can be assessed and corrected via the one-body interaction coordinates in the diagonalizing frame and yield the local correction operator
+\begin{equation}
+U_{\mathrm{loc}}^{(\mathrm{diag})}
+=
+\exp\!\Bigl(-i\sum_{j\in\{a,b,c\}}\phi(\{j\})\, Z_j\Bigr).
+\end{equation}
+Transforming back to the computational basis gives
+\begin{equation}
+\begin{aligned}
+U_{\mathrm{loc}}^{(\mathrm{comp})}
+&=
+(H_A\!\otimes\!I_B\!\otimes\!I_C)\,
+U_{\mathrm{loc}}^{(\mathrm{diag})}\,
+(H_A\!\otimes\!I_B\!\otimes\!I_C) \\
+&=
+e^{i(\phi(\{a\}) X_A + \phi(\{b\}) Z_B + \phi(\{c\}) Z_C)} .
+\end{aligned}
+\end{equation}
+Note that here the local $X$ rotation cannot be corrected virtually and an additional single-qubit gate is needed. The final operation is then
+\begin{equation}
+U_{\mathrm{final}}
+=
+U_{\mathrm{loc}}^{(\mathrm{comp})}\,U^{A\otimes B\otimes C}_{(\mathrm{pulse})}(\mathbf p,T).
+\end{equation}
+
+\medskip
+\noindent
+The fidelity with the target operation in Eq.~\eqref{eq:desired_u_nondiag} evaluates to
+\begin{equation}
+F_{\mathrm{XZZ}}
+=
+\frac{\big|\mathrm{Tr}\!\left[
+\left(U_{\mathrm{target}}\right)^{\!\dagger}
+U_{\mathrm{final}}
+\right]\big|^{2}}{8^{2}}
+= 0.9985,
+\end{equation}
+demonstrating that interaction-resolved optimization in a diagonalizing frame extends naturally to high-fidelity non-diagonal multiqubit gates.
+
+\medskip
+\noindent
+This example demonstrates that the interaction-resolved control objectives apply also to non-diagonal multi-qubit gates. By performing the optimization in a suitable diagonalizing frame, the interaction structure of a Pauli-string generator can be accessed through the same interaction coordinates. 
+
