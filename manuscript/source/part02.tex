@@ -106,6 +106,45 @@ i\sum_{S\subseteq\{1,\dots,n\}}
 where the coefficients $\phi(S)$ specify the many-body contribution strength supported on the subset $S$.
 
 
+\subsection{Control Objectives in Interaction-Resolved Coordinates}
+\label{sec:control_objective_phase_invariants}
+
+\noindent
+Target interaction structures can be specified by assigning desired values $\{\phi_S^\star\}$ to selected interaction coordinates associated with the relevant many-body terms, as represented in Eq.~\eqref{eq:phi_expansion_u_diag}.
+
+% \medskip
+% \noindent
+% The decomposition involves interaction contributions supported on all subsets $S \subseteq \{1,\dots,n\}$ and thus comprises $2^n$ independent coefficients, reflecting the full parameter count of a general $n$-qubit unitary in the diagonal frame up to a global phase. In many relevant settings, however, only a restricted set of $k$-body interaction terms determines the desired operation. In such cases, the relevant parameter space is reduced to a subset of support-selective phase invariants associated with the corresponding interaction structure. Specifying a target operation therefore amounts to fixing a set of invariants $\{\phi_S^\star\}$ associated with selected subsets $S \subseteq \{1,\ldots,n\}$ corresponding to $k$-body contributions on certain qubits.\\
+
+\noindent
+To quantify deviations from desired many-body interaction contributions, a distance measure can be defined directly on the selected interaction coordinates rather than on the full unitary.\\
+Given target values for a chosen set of qubit subsets  $\mathcal{S}_{\mathrm{target}}$, we define the interaction-resolved control cost function
+\begin{equation}
+\label{eq:phase-invariant-cost}
+\mathcal{J}
+=
+\sum_{S\in\mathcal{S}_{\mathrm{target}}}
+w_S
+\Bigl[
+1-\cos\!\bigl(2(\phi(S)-\phi_S^\star)\bigr)
+\Bigr],
+\end{equation}
+where $w_S$ determines the relative importance of the corresponding interaction terms. 
+Furthermore, this formulation also enables interaction-selective optimization: only the interaction contributions associated with subsets in $\mathcal{S}_{\mathrm{target}}$ enter the objective function. For example, leaving degrees of freedom, such as local terms, unconstrained, enlarges the space of admissible solutions, allowing the optimization to exploit this flexibility to find more efficient implementations.
+
+\medskip
+\noindent
+\textbf{Remark.}
+The factor of two in Eq.~\eqref{eq:phase-invariant-cost} reflects the $\pi$-periodicity of Pauli-$Z$ interaction phases. Indeed,
+\begin{equation}
+e^{-i(\theta+\pi)Z_S}
+=
+-\,e^{-i\theta Z_S},
+\label{eq:pi_peridicity}
+\end{equation}
+so shifting the interaction phase by $\pi$ changes only the collective sign of the operator without modifying its physical action. The objective therefore identifies interaction phases differing by integer multiples of $\pi$ as physically equivalent.
+
+
 \subsection{Equivalence Classes}
 \label{sec:interaction_equivalence_classes}
 
