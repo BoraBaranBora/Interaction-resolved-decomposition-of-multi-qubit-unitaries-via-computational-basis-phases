@@ -1,0 +1,297 @@
+-\sum_i\gamma_iB_0m_i
++
+\sum_iQ_i\!\left(m_i^2-\tfrac23\right)
+\right]
+\\
+&\quad
+-
+\left[
+-\sum_i\omega_i m_i
++
+\sum_iQ_i\!\left(m_i^2-\tfrac23\right)
+\right]
+\\
+&=
+\Lambda_s
+-
+\sum_i m_i(\gamma_iB_0-\omega_i).
+\end{aligned}
+\label{eq:Lambda_config_general}
+\end{equation}
+this becomes
+\begin{equation}
+\begin{aligned}
+&e^{iH_{\mathrm{free}}t}
+\sigma_x
+e^{-iH_{\mathrm{free}}t}
+\notag\\
+&=
+\sum_{\mathbf m}
+\left[
+\sigma_+ e^{i\Lambda(\mathbf m)t}
++
+\sigma_- e^{-i\Lambda(\mathbf m)t}
+\right]
+\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}
+\\
+&=
+\sum_{\mathbf m}
+\big[
+\sigma_x\cos(\Lambda(\mathbf m)t)
+-
+\sigma_y\sin(\Lambda(\mathbf m)t)
+\big]
+\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+\label{eq:sigmax_IP_step}
+\end{equation}
+
+
+
+Consequently, the bare electronic part of the microwave interaction becomes
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{MW}}^{(I)}(t)
+&=
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\sum_{\mathbf m}
+\big[
+\sigma_x\cos(\Lambda(\mathbf m)t)
+-
+\sigma_y\sin(\Lambda(\mathbf m)t)
+\big]
+\\
+&\hspace{1cm}\otimes
+\ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+\label{eq:HMW_I}
+\end{equation}
+Here, the nuclear configuration is preserved to leading order during the bare
+microwave-driven electronic transition.\\
+
+%
+
+
+
+We now transform the second term in the dressed microwave interaction,
+\[
+H_{\mathrm{MW},eN}
+=
+-\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\sigma_y\otimes G .
+\]
+Its interaction-picture form is
+\begin{equation}
+H_{\mathrm{MW},eN}^{(I)}(t)
+=
+-\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+e^{iH_{\mathrm{free}}t}
+\left(
+\sigma_y\otimes G
+\right)
+e^{-iH_{\mathrm{free}}t}.
+\label{eq:HeN_IP_start}
+\end{equation}
+
+Since the electron-nuclear modulation term contributes only at first order in the small misalignment angles \(\theta_i\), we employ a leading-order description of its interaction-picture evolution. For the electronic part, we retain the dominant bare precession at \(\Lambda_s\) rather than the full configuration-dependent transition frequency \(\Lambda(\mathbf m)\). For the nuclear part, we approximate the manifold-dependent precession by the effective mean generator
+\[
+H_N
+=
+-\sum_i \delta_i I_{iz},
+\,\, \text{with}\,\,
+\delta_i
+=
+\frac{\gamma_iB_0+\omega_i}{2}.
+\]
+This captures the leading averaged dynamics of the weak modulation without
+tracking the full configuration-resolved evolution.
+
+For the same reason, we also approximate the transformation as
+\begin{equation}
+\begin{aligned}
+&e^{iH_{\mathrm{free}}t}
+\left(
+\sigma_y\otimes G
+\right)
+e^{-iH_{\mathrm{free}}t}
+\notag\\
+&\approx
+\left(
+e^{i\Lambda_s\sigma_z t/2}
+\sigma_y
+e^{-i\Lambda_s\sigma_z t/2}
+\right)
+\otimes
+\left(
+e^{iH_N t}
+G
+e^{-iH_N t}
+\right).
+\end{aligned}
+\label{eq:sigmayG_factorized}
+\end{equation}
+
+The electronic part evaluates to
+\[
+e^{i\Lambda_s\sigma_z t/2}
+\sigma_y
+e^{-i\Lambda_s\sigma_z t/2}
+=
+\sigma_x\sin(\Lambda_s t)
++
+\sigma_y\cos(\Lambda_s t),
+\]
+while the nuclear operator
+\[
+G
+=
+\sum_i\theta_i
+\left(
+-I_{ix}\sin\phi_i
++
+I_{iy}\cos\phi_i
+\right)
+\]
+evolves under \(H_N\) as
+\[
+e^{iH_N t}
+G
+e^{-iH_N t}
+=
+\sum_i\theta_i
+\left[
+I_{ix}\cos(\delta_i t-\phi_i)
++
+I_{iy}\sin(\delta_i t-\phi_i)
+\right].
+\]
+
+Therefore, to leading order,
+\begin{equation}
+\begin{aligned}
+H_{\mathrm{MW},eN}^{(I)}(t)
+&\approx
+-\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+\big[
+\sigma_x\sin(\Lambda_s t)
++
+\sigma_y\cos(\Lambda_s t)
+\big]
+\\
+&\quad\otimes
+\sum_i\theta_i
+\big[
+I_{ix}\cos(\delta_i t-\phi_i)
++
+I_{iy}\sin(\delta_i t-\phi_i)
+\big].
+\end{aligned}
+\label{eq:HeN_I}
+\end{equation}
+
+
+\paragraph{Rotating-wave approximation (RWA).}
+We drive the electron at microwave frequency $\omega_{\mathrm{MW}}$ with a magnetic field
+\begin{equation}
+B_{1,\mathrm{MW}}(t)
+=
+\frac{\sqrt2\,\Omega(t)}{\gamma_e}
+\cos(\omega_{\mathrm{MW}} t),
+\end{equation}
+where $\Omega(t)$ denotes the effective time-dependent Rabi-frequency envelope. 
+Substituting this field into Eq.~\eqref{eq:HMW_I} gives the prefactor
+\[
+\frac{\gamma_e B_{1,\mathrm{MW}}(t)}{\sqrt2}
+=
+\Omega(t)\cos(\omega_{\mathrm{MW}} t).
+\]
+Using the product-to-sum identity $\cos\alpha\cos\beta=\tfrac12[\cos(\alpha-\beta)+\cos(\alpha+\beta)]$
+and $\cos\alpha\sin\beta=\tfrac12[\sin(\beta+\alpha)+\sin(\beta-\alpha)]$,
+the electron interaction-picture drive
+\(
+\propto \sigma_x\cos[\Lambda(\mathbf m)t]-\sigma_y\sin[\Lambda(\mathbf m)t]
+\)
+splits into a slow (difference-frequency) piece and explicit counter-rotating (sum-frequency) pieces:
+\begin{align}
+&\notag\hspace{-0.0cm}H_{e}^{(\mathrm{full})}(t)= \frac{\Omega(t)}{2}\sum_{\mathbf m}\\
+&\hspace{-0.2cm}
+\Big\{\underbrace{\big[\sigma_x\cos((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)-\sigma_y\sin((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)\big]}_{\text{slow (near-resonant)}}\nonumber\\
+&\hspace{-0.2cm}
++\notag \underbrace{\big[\sigma_x\cos\big((\omega_{\mathrm{MW}}+\Lambda(\mathbf m))t\big)- 
+\hspace{0.2cm} \sigma_y\sin\big((\omega_{\mathrm{MW}}+\Lambda(\mathbf m))t\big)\big]}_{\text{fast (counter-rotating)}}\Big\}\\
+&\otimes \ket{\mathbf m}\!\bra{\mathbf m}.
+\label{eq:He_full_split}
+\end{align}
+The \emph{rotating-wave approximation} (RWA) keeps only the slow terms and discards the counter-rotating term at  $(\omega_{\mathrm{MW}}+\Lambda(\mathbf m))t\big)$, yielding
+\begin{equation}
+\boxed{
+\begin{aligned}
+&H_{e}^{(\mathrm{RWA})}(t)
+= \frac{\Omega(t)}{2} \sum_{\mathbf m}
+\big[\sigma_x\cos((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)\\ & \hspace{1.9cm}-\sigma_y\sin((\omega_{\mathrm{MW}}-\Lambda(\mathbf m))\,t)\big]
+\otimes \ket{\mathbf m}\!\bra{\mathbf m}.
+\end{aligned}
+}
+\label{eq:HeRWA_time_nophase_Lambda_m}
+\end{equation}
+Applying the same procedure to the electron–nuclear modulation term Eq.~\eqref{eq:HeN_I}, gives
+\begin{align}
+&\notag H_{eN}^{(\mathrm{full})}(t)\\
+&\notag=
+\underbrace{-\,\frac{\Omega(t)}{2}\,
+\big[\sigma_x\sin((\omega_{\mathrm{MW}}-\Lambda_s) t)+\sigma_y\cos((\omega_{\mathrm{MW}}-\Lambda_s) t)\big]}_{\text{slow (near-resonant in the electron sector)}}\;\\
+&\notag\;\otimes\;
+\sum_i \theta_i\big[I'_{ix}\cos(\delta_i t-\phi_i)+I'_{iy}\sin(\delta_i t-\phi_i)\big]\\
+&\notag\hspace{-0.0cm}\quad
+\underbrace{-\,\frac{\Omega(t)}{2}\,
+\big[\sigma_x\sin\big((\Lambda_s+\omega_{\mathrm{MW}})t\big)
+      +\sigma_y\cos\big((\Lambda_s+\omega_{\mathrm{MW}})t\big)\big]}_{\text{fast (counter-rotating)}}\\
+&\;\otimes\;
+\sum_i \theta_i\big[I'_{ix}\cos(\delta_i t-\phi_i)+I'_{iy}\sin(\delta_i t-\phi_i)\big].
+\label{eq:HeN_full_split}
+\end{align}
+Discarding the fast rotating term again, gives 
+\begin{equation}
+\boxed{
+\begin{aligned}
+&H_{eN}^{(\mathrm{RWA})}(t)\\
+&\notag=-\,\frac{\Omega(t)}{2}\,
+\big[\sigma_x\sin((\omega_{\mathrm{MW}}-\Lambda_s) t)+\sigma_y\cos((\omega_{\mathrm{MW}}-\Lambda_s) t)\big]\\
+&\;\otimes\;
+\sum_i \theta_i\big[I'_{ix}\cos(\delta_i t-\phi_i)+I'_{iy}\sin(\delta_i t-\phi_i)\big].
+\end{aligned}
+}
+\label{eq:HeN_RWA_time_nophase_final}
+\end{equation}
+
+\section{NV-register simulation parameters}
+\label{app:nv_params}
+\noindent
+The NV electronic spin ($S{=}1$), with gyromagnetic ratio 
+$\gamma_e/2\pi = 28.024~\text{GHz/T}$, couples to one intrinsic 
+$^{14}$N nucleus and two proximate $^{13}$C spins through anisotropic 
+hyperfine tensors $A_{zz}$ and $A_{\perp}$, with an external magnetic 
+field $B_0 = 0.45~\text{T}$ aligned with the NV axis. 
+The nuclear-spin parameters listed in Table~\ref{tab:nv_params_table} 
+correspond to typical experimental ranges reported in 
+Refs.~\cite{Chen,nizovtsev}.\\
+\begin{table}[t]
+\centering
+\caption{Physical parameters used for the nuclear spins in the 
+NV-$^{14}$N-$^{13}$C$_1$-$^{13}$C$_2$ register simulation.}
+\label{tab:nv_params_table}
+\begin{tabular}{lccc}
+\toprule
+Parameter & $^{14}$N ($I{=}1$) & $^{13}$C$_1$ ($I{=}\tfrac{1}{2}$) & $^{13}$C$_2$ ($I{=}\tfrac{1}{2}$) \\
+\midrule
+$\gamma/2\pi$ (MHz/T) & 3.077 & 10.71 & 10.71 \\
+$A_{zz}/2\pi$ (MHz)                     & $-2.14$ & 2.281 & $-1.011$ \\
+$A_{\perp}/2\pi$ (MHz)                  & 0.00 & 0.240 & 0.014 \\
+$Q/2\pi$ (MHz)                          & $-5.01$ & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
