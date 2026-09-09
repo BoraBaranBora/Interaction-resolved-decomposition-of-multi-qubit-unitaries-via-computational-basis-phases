@@ -1,0 +1,278 @@
+\section{Explicit Three-Qubit Interaction Coordinates}
+\label{app:explicit_3q_invariants}
+
+\noindent
+For three qubits, the interaction coordinates can be evaluated directly from the diagonal phase values $\{\phi_{abc}\}_{a,b,c\in\{0,1\}}$ using the parity form of Eq.~\eqref{eq:phase_coefficients_parity_sum}. Writing $\vec{x}=(a,b,c)$, this yields
+\begin{equation}
+\label{eq:phiS_3q_general}
+\phi(S)
+=
+\frac{1}{8}
+\sum_{a,b,c\in\{0,1\}}
+(-1)^{\sum_{i\in S} x_i}\,\phi_{abc},
+\end{equation}
+where $\phi_{abc} \equiv \phi(a,b,c)$ denotes the phase acquired by the computational-basis state $\ket{abc}$.
+
+\medskip
+\noindent
+That is, each interaction coordinate is obtained as a parity-weighted sum over the measured phase values, where the sign for each computational-basis state is determined by the parity of the bits indexed by $S$. We list the explicit expressions for all nontrivial subsets below.
+
+\medskip
+\noindent\textbf{Three-body interaction coordinate $\phi(\{a,b,c\})$.}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a,b,c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
+-\phi_{010}
++\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
++\phi_{101}
++\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\medskip
+\noindent\textbf{Two-body interaction coordinates.}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a,b\})
+&= \frac{1}{8}\Big(
+\phi_{000}
++\phi_{001}
+-\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
+-\phi_{101}
++\phi_{110}
++\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a,c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
++\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
++\phi_{101}
+-\phi_{110}
++\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{b,c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
+-\phi_{010}
++\phi_{011} \\
+&\qquad\quad
++\phi_{100}
+-\phi_{101}
+-\phi_{110}
++\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\medskip
+\noindent\textbf{Single-qubit interaction coordinates.}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{a\})
+&= \frac{1}{8}\Big(
+\phi_{000}
++\phi_{001}
++\phi_{010}
++\phi_{011} \\
+&\qquad\quad
+-\phi_{100}
+-\phi_{101}
+-\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{b\})
+&= \frac{1}{8}\Big(
+\phi_{000}
++\phi_{001}
+-\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
++\phi_{100}
++\phi_{101}
+-\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\phi(\{c\})
+&= \frac{1}{8}\Big(
+\phi_{000}
+-\phi_{001}
++\phi_{010}
+-\phi_{011} \\
+&\qquad\quad
++\phi_{100}
+-\phi_{101}
++\phi_{110}
+-\phi_{111}
+\Big)
+\end{aligned}
+}
+\end{equation}
+
+
+\section{Explicit Three-Qubit Reconstruction of the Phase Map}
+\label{app:explicit_3q_phase_map_reconstruction}
+
+\noindent
+The diagonal representation introduced in the main text shows that the unitary $U_{\mathrm{diag}}$ is fully characterized by the phases $\phi(\vec{x})$ acquired by computational-basis states. Since global
+phase is not observable, the phases $\phi(\vec{x})$ cannot be measured directly. Instead, experiments provide access to relative phases between computational-basis states, which can be obtained using conditional
+Ramsey interferometry \cite{ramsey1950molecular, childress2006coherent, balasubramanian2009ultralong, taminiau2014universal}.
+
+\medskip
+\noindent
+To measure such phase differences, one qubit $p$ is used as a probe while the remaining qubits are prepared in a fixed computational-basis configuration
+\[
+\ket{s}=\ket{x_1\dots x_{p-1}x_{p+1}\dots x_n}.
+\]
+The probe qubit is initialized in the superposition
+\[
+\ket{+}_p=\frac{\ket{0}_p+\ket{1}_p}{\sqrt2},
+\]
+yielding the joint state
+\[
+\frac{1}{\sqrt2}\bigl(\ket{0,s}+\ket{1,s}\bigr).
+\]
+
+\medskip
+\noindent
+After evolution under $U_{\mathrm{diag}}$, the two components accumulate different phases,
+\[
+\frac{1}{\sqrt2}
+\left(
+e^{i\phi(0,s)}\ket{0,s}
++
+e^{i\phi(1,s)}\ket{1,s}
+\right).
+\]
+Ramsey interferometry therefore measures the relative phase
+\begin{equation}
+\Theta_p(s)=\phi(1,s)-\phi(0,s),
+\label{eq:ramsey_phase}
+\end{equation}
+which corresponds to the phase difference between computational-basis states that differ only in qubit $p$.
+
+\medskip
+\noindent
+For a three-qubit subsystem with computational-basis phases
+\[
+\{\phi_{abc}\}_{a,b,c\in\{0,1\}},
+\qquad
+\phi_{abc}\equiv \phi(a,b,c),
+\]
+the conditional Ramsey measurements determine relative phases along the edges of the three-dimensional Boolean hypercube of computational-basis states.
+
+\medskip
+\noindent
+Choosing qubit $a$ as probe yields
+\begin{align}
+\Theta_a(0,0) &= \phi_{100}-\phi_{000}, \\
+\Theta_a(0,1) &= \phi_{101}-\phi_{001}, \\
+\Theta_a(1,0) &= \phi_{110}-\phi_{010}, \\
+\Theta_a(1,1) &= \phi_{111}-\phi_{011}.
+\end{align}
+
+\noindent
+Choosing qubit $b$ as probe gives
+\begin{align}
+\Theta_b(0,0) &= \phi_{010}-\phi_{000}, \\
+\Theta_b(0,1) &= \phi_{011}-\phi_{001}, \\
+\Theta_b(1,0) &= \phi_{110}-\phi_{100}, \\
+\Theta_b(1,1) &= \phi_{111}-\phi_{101}.
+\end{align}
+
+\noindent
+Choosing qubit $c$ as probe gives
+\begin{align}
+\Theta_c(0,0) &= \phi_{001}-\phi_{000}, \\
+\Theta_c(0,1) &= \phi_{011}-\phi_{010}, \\
+\Theta_c(1,0) &= \phi_{101}-\phi_{100}, \\
+\Theta_c(1,1) &= \phi_{111}-\phi_{110}.
+\end{align}
+
+\medskip
+\noindent
+These twelve measurements provide linear constraints on the eight unknown phases $\phi_{abc}$. Since the phase map is defined only up to a global phase, we fix the reference
+\[
+\phi_{000}=0.
+\]
+The remaining phases can then be reconstructed by solving the resulting linear system. One convenient reconstruction is
+\begin{align}
+\phi_{100} &= \Theta_a(0,0), \\
+\phi_{010} &= \Theta_b(0,0), \\
+\phi_{001} &= \Theta_c(0,0), \\
+\phi_{110} &= \phi_{010}+\Theta_a(1,0), \\
+\phi_{101} &= \phi_{001}+\Theta_a(0,1), \\
+\phi_{011} &= \phi_{001}+\Theta_b(0,1), \\
+\phi_{111} &= \phi_{011}+\Theta_a(1,1).
+\end{align}
+
+\noindent
+Equivalently, the final phase can be reconstructed along different paths on the hypercube, for example
+\begin{equation}
+\phi_{111}=\phi_{110}+\Theta_c(1,1)=\phi_{101}+\Theta_b(1,1),
+\end{equation}
+which is consistent provided the measured phase differences satisfy the
+hypercube compatibility relations.
+
+\medskip
+\noindent
+The same reconstruction principle extends directly to an $n$-qubit system. In that case the computational-basis phases $\{\phi(\vec{x})\}_{\vec{x}\in\{0,1\}^n}$ correspond to the vertices of an $n$-dimensional Boolean hypercube. Conditional Ramsey measurements determine phase differences along its edges,
+\[
+\Theta_p(s)=\phi(1,s)-\phi(0,s),
+\]
+for each probe qubit $p$ and spectator configuration $s$. Repeating the experiment for all $p$ and $s$ yields $n2^{\,n-1}$ linear relations among the $2^n$ phases. Fixing a reference phase (e.g.\ $\phi(0,\dots,0)=0$)
+removes the global phase freedom, after which the remaining phases can be reconstructed by solving the resulting linear system.
+
+\medskip
+\noindent
+Once the full set $\{\phi(\vec{x})\}$ has been reconstructed, the corresponding interaction coordinates follow from the Walsh-Hadamard parity sums introduced in the main text and listed explicitly for the three-qubit
+case in Appendix~\ref{app:explicit_3q_invariants}.
+
+\end{document}
